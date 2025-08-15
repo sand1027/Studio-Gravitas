@@ -1,0 +1,220 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "category": "architecture",
+      "subcategory": "residential",
+      "title": "HOUSE IN WALDEN BAY",
+      "slug": "house-in-walden-bay",
+      "description": "A serene residential retreat blending with natural surroundings, emphasizing privacy and light.",
+      "coverImage": "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "galleryImages": [
+        "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ],
+      "metadata": {
+        "location": "Australia",
+        "year": "2023",
+        "area": "280 sqm",
+        "status": "Completed",
+        "client": "Private Residence",
+        "team": "MORQ Studio",
+        "contractor": "Bay Construction Co.",
+        "budget": "$850,000 AUD"
+      },
+      "detailedDescription": "House in Walden Bay represents a careful balance between privacy and openness, nestled within the natural landscape of the Australian coastline.",
+      "features": [
+        "Sustainable timber construction",
+        "Passive solar design",
+        "Rainwater collection system"
+      ]
+    },
+    {
+      "id": 2,
+      "category": "architecture",
+      "subcategory": "residential",
+      "title": "ENCLOSED HOUSE III",
+      "slug": "enclosed-house-iii",
+      "description": "An enclosed residential design focusing on introspection and material warmth.",
+      "coverImage": "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "galleryImages": [
+        "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ],
+      "metadata": {
+        "location": "Italy",
+        "year": "2022",
+        "area": "150 sqm",
+        "status": "Completed",
+        "client": "Private Client",
+        "team": "MORQ Studio",
+        "contractor": "Costruzioni Moderne",
+        "budget": "€420,000"
+      },
+      "detailedDescription": "Enclosed House III explores the concept of introspection through architecture.",
+      "features": [
+        "Central courtyard design",
+        "Natural stone construction",
+        "Handcrafted ceramic details"
+      ]
+    },
+    {
+      "id": 3,
+      "category": "architecture",
+      "subcategory": "urban",
+      "title": "RYDE COMPLEX",
+      "slug": "ryde-complex",
+      "description": "Urban complex promoting community interaction with sustainable features.",
+      "coverImage": "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "galleryImages": [
+        "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ],
+      "metadata": {
+        "location": "Australia",
+        "year": "2024",
+        "area": "1,200 sqm",
+        "status": "In Progress"
+      }
+    },
+    {
+      "id": 4,
+      "category": "architecture",
+      "subcategory": "hospitality",
+      "title": "FURTHER",
+      "slug": "further",
+      "description": "A boutique hotel integrating with the village fabric through porous design.",
+      "coverImage": "https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "galleryImages": [
+        "https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ],
+      "metadata": {
+        "location": "Indonesia",
+        "year": "2023",
+        "area": "800 sqm",
+        "status": "Completed"
+      }
+    },
+    {
+      "id": 5,
+      "category": "architecture",
+      "subcategory": "other",
+      "title": "HERAION SANCTUM",
+      "slug": "heraion-sanctum",
+      "description": "A cultural sanctum blending history and modernity.",
+      "coverImage": "https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "galleryImages": [
+        "https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ],
+      "metadata": {
+        "location": "Italy",
+        "year": "2021",
+        "area": "500 sqm",
+        "status": "Completed"
+      }
+    },
+    {
+      "id": 6,
+      "category": "interior",
+      "subcategory": "residential-interior",
+      "title": "FISHERMAN HOUSE",
+      "slug": "fisherman-house",
+      "description": "Coastal-inspired interior with natural materials.",
+      "coverImage": "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "galleryImages": [
+        "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ],
+      "metadata": {
+        "location": "Italy",
+        "year": "2020"
+      }
+    },
+    {
+      "id": 7,
+      "category": "interior",
+      "subcategory": "retail-interior",
+      "title": "LOVE STORY SHOP I",
+      "slug": "love-story-shop-i",
+      "description": "Minimalist retail space with elegant displays.",
+      "coverImage": "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "galleryImages": [
+        "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ],
+      "metadata": {
+        "location": "Rome",
+        "year": "2019"
+      }
+    },
+    {
+      "id": 8,
+      "category": "interior",
+      "subcategory": "hospitality-interior",
+      "title": "CAFE MODERN",
+      "slug": "cafe-modern",
+      "description": "Cozy cafe interior with warm lighting and seating.",
+      "coverImage": "https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "galleryImages": [
+        "https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ],
+      "metadata": {
+        "location": "Australia",
+        "year": "2022"
+      }
+    },
+    {
+      "id": 9,
+      "category": "interior",
+      "subcategory": "offices-interior",
+      "title": "OFFICE IN ROME III",
+      "slug": "office-in-rome-iii",
+      "description": "Modern office with collaborative spaces.",
+      "coverImage": "https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "galleryImages": [
+        "https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ],
+      "metadata": {
+        "location": "Rome",
+        "year": "2021",
+        "area": "",
+        "client": "",
+        "team": "MORQ Studio",
+        "contractor": "",
+        "budget": ""
+      },
+      "detailedDescription": "test-for-detailed description",
+      "location": "Rome",
+      "year": "2021",
+      "area": "",
+      "client": "",
+      "team": "MORQ Studio",
+      "contractor": "",
+      "budget": "",
+      "features": [
+        "test-upload-0feat"
+      ]
+    },
+    {
+      "id": 10,
+      "category": "interior",
+      "subcategory": "other-interior",
+      "title": "ART GALLERY",
+      "slug": "art-gallery",
+      "description": "Minimalist gallery space for exhibitions.",
+      "coverImage": "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "galleryImages": [
+        "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ],
+      "metadata": {
+        "location": "Italy",
+        "year": "2020"
+      }
+    }
+  ]
+}
