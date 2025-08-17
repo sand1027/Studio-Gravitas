@@ -11,10 +11,18 @@ export const uploadImage = async (file, folder = 'morq-portfolio') => {
     const result = await cloudinary.uploader.upload(file, {
       folder,
       resource_type: 'auto',
+      quality: 'auto:good',
+      fetch_format: 'auto',
+      flags: 'progressive',
+      transformation: [
+        { width: 2000, height: 2000, crop: 'limit' },
+        { quality: 85 }
+      ]
     });
     return result.secure_url;
   } catch (error) {
-    throw new Error('Image upload failed');
+    console.error('Cloudinary upload error:', error);
+    throw new Error(`Image upload failed: ${error.message}`);
   }
 };
 

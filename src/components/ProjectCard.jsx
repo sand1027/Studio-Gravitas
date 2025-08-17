@@ -29,33 +29,33 @@ export default function ProjectCard({ title, description, image, href, projectIn
 
   return (
     <>
-      <div className="group relative bg-white overflow-hidden hover:shadow-lg transition-all duration-300">
-        <a href={href} className="block">
+      <div className="group relative bg-white overflow-hidden transition-all duration-300 cursor-pointer">
+        <a href={href} className="block relative z-10">
           <div className="relative overflow-hidden bg-gray-100">
-            <div className="w-full h-64 lg:h-72 bg-gray-200 overflow-hidden">
+            <div className="w-full h-80 lg:h-96 bg-gray-200 overflow-hidden">
               <SimpleImage
                 src={displayImage}
                 alt={title || 'Project image'}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700"
               />
             </div>
-            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
+            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
           </div>
-          <div className="p-4">
-            <h3 className="text-lg font-light tracking-wide text-black mb-2">{title}</h3>
-            <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">
+          <div className="p-6">
+            <h3 className="text-base font-light tracking-wide text-black mb-3 uppercase">{title}</h3>
+            <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
               {description}
             </p>
           </div>
         </a>
         
         {/* View Details Button */}
-        <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300">
+        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20">
           <button
             onClick={handleInfoClick}
-            className="bg-white text-black px-3 py-1 text-xs font-medium hover:bg-gray-100 transition-colors shadow-md border border-gray-200"
+            className="bg-white bg-opacity-90 backdrop-blur-sm text-black px-3 py-1 text-xs font-light tracking-wide hover:bg-opacity-100 transition-all cursor-pointer"
           >
-            VIEW DETAILS
+            INFO
           </button>
         </div>
       </div>

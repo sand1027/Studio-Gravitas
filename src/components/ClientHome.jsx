@@ -32,76 +32,109 @@ export default function ClientHome() {
     return <div className="text-center py-12">Loading...</div>;
   }
 
-  const featuredProjects = projects.filter((p) => p.id <= 3);
-  const recentProjects = projects.slice(-2);
+  // Debug: Log all project categories
+  console.log('All projects with categories:', projects.map(p => ({ title: p.title, category: p.category })));
+  
+  // Filter to only show Projects and Arts categories (case-insensitive)
+  const filteredProjects = projects.filter((p) => {
+    const category = p.category?.toLowerCase();
+    return category === 'projects' || category === 'arts' || category === 'project' || category === 'art' || category === 'architecture';
+  });
+  
+  console.log('Filtered projects:', filteredProjects.map(p => ({ title: p.title, category: p.category })));
+  
+  const featuredProjects = filteredProjects.filter((p) => p.id <= 3);
+  const recentProjects = filteredProjects.slice(-2);
+  
+  console.log('Featured projects:', featuredProjects.length);
+  console.log('Recent projects:', recentProjects.length);
 
   return (
-    <div className="space-y-16">
-      <div className="space-y-6">
-        <h1 className="text-5xl lg:text-6xl font-light tracking-wider text-black">
-          MORQ
-        </h1>
-        <div className="w-16 h-px bg-black"></div>
-      </div>
-
-      <div className="w-full h-80 lg:h-96 rounded-lg overflow-hidden shadow-lg bg-gray-200">
-        <img
-          src="https://tse2.mm.bing.net/th/id/OIP.7cRYFyLoDEDh4sRtM73vvwHaDg?rs=1&pid=ImgDetMain&o=7&rm=3"
-          alt="Architecture Hero"
-          className="w-full h-full object-cover"
-          onLoad={() => console.log('✅ Hero image loaded')}
-          onError={(e) => {
-            console.log('❌ Hero image failed');
-          }}
-        />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div className="space-y-6">
-          <h2 className="text-2xl font-light tracking-wide">About MORQ</h2>
-          <p className="text-lg leading-relaxed text-gray-700 font-light">
-            MORQ is an architecture studio based in Italy and Australia,
-            dedicated to creating meaningful spaces within thoughtful, essential
-            buildings. Our work engages with existing conditions to produce
-            architecture that stimulates the senses and contributes positively
-            to the built environment.
-          </p>
-          <p className="text-base leading-relaxed text-gray-600 font-light">
-            Founded on the principles of contextual design and material honesty,
-            we approach each project as a unique opportunity to enhance the
-            relationship between people and place.
-          </p>
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <div className="relative h-screen">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+            alt="Studio Gravitas Architecture"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-30"></div>
         </div>
-        <div className="space-y-6">
-          <h3 className="text-xl font-light tracking-wide">Our Approach</h3>
-          <ul className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <span className="w-2 h-2 bg-black rounded-full mt-2 mr-3 flex-shrink-0"></span>
-              Contextual design that responds to site and climate
-            </li>
-            <li className="flex items-start">
-              <span className="w-2 h-2 bg-black rounded-full mt-2 mr-3 flex-shrink-0"></span>
-              Sustainable materials and construction methods
-            </li>
-            <li className="flex items-start">
-              <span className="w-2 h-2 bg-black rounded-full mt-2 mr-3 flex-shrink-0"></span>
-              Collaborative process with clients and communities
-            </li>
-            <li className="flex items-start">
-              <span className="w-2 h-2 bg-black rounded-full mt-2 mr-3 flex-shrink-0"></span>
-              Integration of interior and exterior spaces
-            </li>
-          </ul>
+        
+        <div className="relative z-10 flex items-center justify-center h-full text-center text-white">
+          <div className="space-y-6">
+            <h1 className="text-4xl lg:text-6xl font-light tracking-wider">
+              STUDIO GRAVITAS
+            </h1>
+            <div className="w-24 h-px bg-white mx-auto"></div>
+            <p className="text-lg lg:text-xl font-light max-w-2xl mx-auto px-6">
+              Architecture rooted in phenomenology, driven by collaborative spirit and timeless design
+            </p>
+          </div>
         </div>
       </div>
 
-      <section className="space-y-8">
-        <div>
-          <h2 className="text-3xl font-light tracking-wide text-black mb-2">
-            Featured Projects
-          </h2>
-          <div className="w-12 h-px bg-gray-300"></div>
-        </div>
+      <div className="max-w-7xl mx-auto px-8 py-20 space-y-20">
+
+        {/* About Section */}
+        <section className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
+          <div className="lg:col-span-2 space-y-8">
+            <div className="space-y-4">
+              <h2 className="text-2xl lg:text-3xl font-light tracking-wide text-black">About Studio Gravitas</h2>
+              <div className="w-16 h-px bg-black"></div>
+            </div>
+            
+            <div className="space-y-6 text-gray-700 leading-relaxed">
+              <p className="text-lg font-light">
+                Studio Gravitas was established in 2016, with their inaugural project <em>The House of Memories</em> in India. 
+                Gravitas represents a collective spirit, a process, and an investigation into architecture and design—driven 
+                by the past, present, and future.
+              </p>
+              <p>
+                For Gravitas, it is a process rather than a product. It is the idea of making rather than building. 
+                It is about the atmosphere than mere aesthetics. As a practice, Gravitas firmly believes in the 
+                collaborative spirit and a holistic approach to design.
+              </p>
+            </div>
+          </div>
+          
+          <div className="space-y-8">
+            <div className="bg-gray-50 p-8">
+              <h3 className="text-lg font-light text-black mb-6">Our Approach</h3>
+              <ul className="space-y-4 text-gray-600">
+                <li className="flex items-start">
+                  <span className="w-1 h-1 bg-black rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="text-sm">Contextual design that responds to site and climate</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="w-1 h-1 bg-black rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="text-sm">Sustainable materials and construction methods</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="w-1 h-1 bg-black rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="text-sm">Collaborative process with clients and communities</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="w-1 h-1 bg-black rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="text-sm">Integration of interior and exterior spaces</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Featured Projects */}
+        <section className="space-y-12">
+          <div className="text-center space-y-4">
+            <h2 className="text-2xl lg:text-3xl font-light tracking-wide text-black">
+              Featured Projects
+            </h2>
+            <div className="w-16 h-px bg-black mx-auto"></div>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Explore our carefully curated selection of architectural projects that embody our design philosophy
+            </p>
+          </div>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {featuredProjects.length > 0 ? (
             featuredProjects.map((proj) => {
@@ -135,8 +168,8 @@ export default function ClientHome() {
                     </button>
                   </div>
                   <a href={`/projects/${proj.category}/${proj.subcategory}/${proj.slug}`} className="block p-6">
-                    <h3 className="text-xl font-light tracking-wide text-black mb-3">{proj.title}</h3>
-                    <p className="text-gray-600 leading-relaxed line-clamp-2">
+                    <h3 className="text-base font-light tracking-wide text-black mb-3 uppercase">{proj.title}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
                       {proj.description}
                     </p>
                   </a>
@@ -148,33 +181,37 @@ export default function ClientHome() {
               <p className="text-gray-500">No featured projects found</p>
             </div>
           )}
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <section className="bg-white p-8 rounded-lg shadow-sm">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          <div>
-            <h3 className="text-3xl font-light text-black mb-2">50+</h3>
-            <p className="text-gray-600">Projects Completed</p>
+        {/* Stats Section */}
+        <section className="bg-gray-50 py-16 -mx-8">
+          <div className="max-w-4xl mx-auto px-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+              <div className="space-y-2">
+                <h3 className="text-4xl font-light text-black">50+</h3>
+                <p className="text-gray-600 text-sm uppercase tracking-wide">Projects Completed</p>
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-4xl font-light text-black">2</h3>
+                <p className="text-gray-600 text-sm uppercase tracking-wide">Countries</p>
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-4xl font-light text-black">8+</h3>
+                <p className="text-gray-600 text-sm uppercase tracking-wide">Years Experience</p>
+              </div>
+            </div>
           </div>
-          <div>
-            <h3 className="text-3xl font-light text-black mb-2">2</h3>
-            <p className="text-gray-600">Countries</p>
-          </div>
-          <div>
-            <h3 className="text-3xl font-light text-black mb-2">15+</h3>
-            <p className="text-gray-600">Years Experience</p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="space-y-8">
-        <div>
-          <h2 className="text-3xl font-light tracking-wide text-black mb-2">
-            Recent Work
-          </h2>
-          <div className="w-12 h-px bg-gray-300"></div>
-        </div>
+        {/* Recent Work */}
+        <section className="space-y-12">
+          <div className="text-center space-y-4">
+            <h2 className="text-2xl lg:text-3xl font-light tracking-wide text-black">
+              Recent Work
+            </h2>
+            <div className="w-16 h-px bg-black mx-auto"></div>
+          </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {recentProjects.length > 0 ? (
             recentProjects.map((proj) => (
@@ -206,8 +243,8 @@ export default function ClientHome() {
                   </button>
                 </div>
                 <a href={`/projects/${proj.category}/${proj.subcategory}/${proj.slug}`} className="block p-6">
-                  <h3 className="text-xl font-light tracking-wide text-black mb-3">{proj.title}</h3>
-                  <p className="text-gray-600 leading-relaxed line-clamp-2">
+                  <h3 className="text-base font-light tracking-wide text-black mb-3 uppercase">{proj.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
                     {proj.description}
                   </p>
                 </a>
@@ -218,12 +255,13 @@ export default function ClientHome() {
               <p className="text-gray-500">No recent projects found</p>
             </div>
           )}
-        </div>
-      </section>
+          </div>
+        </section>
+      </div>
 
       {/* Modal */}
       {showInfo && (() => {
-        const project = projects.find(p => p.id === showInfo);
+        const project = filteredProjects.find(p => p.id === showInfo);
         if (!project) return null;
         
         const allImages = [project.coverImage, ...(project.galleryImages || [])].filter(Boolean);
@@ -282,7 +320,7 @@ export default function ClientHome() {
                   <h2 className="text-2xl font-light text-black">{project.title}</h2>
                   <button
                     onClick={() => setShowInfo(null)}
-                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                    className="bg-black text-white hover:bg-gray-800 transition-colors p-2 rounded-full"
                   >
                     <X size={24} />
                   </button>

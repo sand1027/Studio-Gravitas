@@ -25,7 +25,7 @@ export default function LoadingScreen() {
         {/* Logo Animation */}
         <div className="relative">
           <div className="text-6xl font-light tracking-[0.3em] text-black animate-pulse">
-            MORQ
+            STUDIO GRAVITAS
           </div>
           <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-px bg-black animate-pulse"></div>
         </div>
