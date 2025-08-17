@@ -9,10 +9,12 @@ export default function AppSidebar() {
   const pathname = usePathname();
 
   const links = [
-    { href: "/", label: "Home" },
+    { href: "/home", label: "Home" },
     { href: "/architecture", label: "Architecture" },
-    { href: "/interior", label: "Interior" },
-    { href: "/about", label: "About" },
+    { href: "/art", label: "Art" },
+    { href: "/objects", label: "Objects" },
+    { href: "/thoughts", label: "Thoughts" },
+    { href: "/about", label: "About us" },
     { href: "/contact", label: "Contact" },
     { href: "/upload", label: "Upload", hideOnMobile: true },
   ];
@@ -21,7 +23,7 @@ export default function AppSidebar() {
     <>
       {/* Mobile Header */}
       <div className="lg:hidden flex items-center justify-between p-4 bg-white border-b border-gray-100 fixed top-0 left-0 right-0 z-50">
-        <div className="text-2xl font-light tracking-wider">MORQ</div>
+        <div className="text-lg font-light tracking-wider whitespace-nowrap">STUDIO GRAVITAS</div>
         <button 
           onClick={() => setOpen(!open)} 
           aria-label="Toggle menu"
@@ -42,7 +44,8 @@ export default function AppSidebar() {
             <a
               key={link.href}
               href={link.href}
-              className="block py-2 text-lg font-light text-gray-800 hover:text-black transition-colors"
+              className="block py-2 text-lg font-light text-gray-800 hover:text-black transition-colors cursor-pointer"
+              style={{ pointerEvents: 'auto' }}
               onClick={() => setOpen(false)}
             >
               {link.label}
@@ -52,25 +55,24 @@ export default function AppSidebar() {
       </div>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:block bg-white border-r border-gray-100 w-72 p-8 fixed h-screen overflow-hidden">
-        <div className="mb-12">
-          <h1 className="text-3xl font-light tracking-wider text-black">MORQ</h1>
-          <div className="w-8 h-px bg-black mt-2"></div>
+      <aside className="hidden lg:block bg-white w-64 fixed h-screen overflow-hidden">
+        <div className="pt-8 pb-6 px-6">
+          <h1 className="text-sm font-normal tracking-wide text-black">STUDIO GRAVITAS</h1>
         </div>
         
-        <nav className="space-y-1 overflow-hidden">
+        <nav className="overflow-hidden space-y-1">
           {links.map((link) => {
             const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
             return (
               <a
                 key={link.href}
                 href={link.href}
-                className={`block py-3 px-4 text-base font-light transition-all duration-200 border-l-3 ${
+                className={`block py-2 px-6 text-xs font-normal transition-colors cursor-pointer relative z-10 ${
                   isActive 
-                    ? 'text-black bg-gray-100 border-black' 
-                    : 'text-gray-700 hover:text-black hover:bg-gray-50 border-transparent hover:border-gray-300'
+                    ? 'text-black bg-gray-50' 
+                    : 'text-gray-600 hover:text-black hover:bg-gray-50'
                 } no-underline`}
-                style={{ textDecoration: 'none' }}
+                style={{ textDecoration: 'none', pointerEvents: 'auto' }}
               >
                 {link.label}
               </a>
@@ -78,10 +80,10 @@ export default function AppSidebar() {
           })}
         </nav>
         
-        <div className="absolute bottom-8 left-8 right-8">
-          <div className="text-xs text-gray-500 space-y-1">
+        <div className="absolute bottom-6 left-6 right-6">
+          <div className="text-xs text-gray-400 space-y-1">
             <p>Architecture Studio</p>
-            <p>Italy • Australia</p>
+            <p>India International</p>
           </div>
         </div>
       </aside>

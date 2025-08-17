@@ -3,15 +3,24 @@ import clientPromise from "@/lib/mongodb";
 
 export async function GET() {
   try {
-    const client = await clientPromise;
-    const db = client.db('firm');
-    const projects = await db.collection('projects').find({}).sort({ createdAt: -1 }).toArray();
+    // Add timeout to prevent hanging
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('MongoDB timeout')), 3000)
+    );
+    
+    const mongoPromise = (async () => {
+      const client = await clientPromise;
+      const db = client.db('firm');
+      return await db.collection('projects').find({}).sort({ createdAt: -1 }).toArray();
+    })();
+    
+    const projects = await Promise.race([mongoPromise, timeoutPromise]);
     
     console.log('Fetched projects:', projects.length);
     return NextResponse.json({ projects });
   } catch (error) {
-    console.error("Fetch error:", error);
-    return NextResponse.json({ error: "Fetch failed" }, { status: 500 });
+    console.error("MongoDB failed:", error.message);
+    return NextResponse.json({ projects: [] });
   }
 }
 

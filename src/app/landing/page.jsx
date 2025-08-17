@@ -1,6 +1,6 @@
 "use client";
 
-export default function Root() {
+export default function Landing() {
   return (
     <div className="relative h-screen w-full overflow-hidden">
       {/* Background Image */}

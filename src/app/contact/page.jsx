@@ -1,10 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import toast from 'react-hot-toast';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -21,68 +18,130 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("Sending...");
-    const res = await fetch("/api/send", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
-    if (res.ok) {
-      setStatus("Email sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
-    } else {
-      setStatus("Error sending email.");
+    toast.loading('Sending message...', { id: 'email-send' });
+    
+    try {
+      const res = await fetch("/api/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      
+      if (res.ok) {
+        toast.success('Message sent successfully!', { id: 'email-send' });
+        setFormData({ name: "", email: "", message: "" });
+        setStatus("");
+      } else {
+        toast.error('Failed to send message. Please try again.', { id: 'email-send' });
+        setStatus("");
+      }
+    } catch (error) {
+      toast.error('Network error. Please check your connection.', { id: 'email-send' });
+      setStatus("");
     }
   };
 
   return (
-    <div className="space-y-8 max-w-2xl">
-      <h1 className="text-3xl sm:text-4xl font-bold">Contact</h1>
-      <div className="space-y-4">
-        <h2 className="text-xl sm:text-2xl font-semibold">Offices</h2>
-        <p className="text-base sm:text-lg">General Enquiries: mail@morq.it</p>
-        <p className="text-base sm:text-lg">
-          Italy: Via Monte Santo, 25, 00195 Rome. T +39 06 37 35 0175.
-          italy@morq.it
-        </p>
-        <p className="text-base sm:text-lg">Australia: 6 Burns St.</p>
+    <div className="min-h-screen bg-white">
+      <div className="max-w-6xl mx-auto px-8 py-16">
+        <div className="space-y-4 mb-16">
+          <h1 className="text-2xl lg:text-3xl font-light tracking-wide text-black">Contact</h1>
+          <div className="w-16 h-px bg-black"></div>
+        </div>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="space-y-12">
+            <div>
+              <h2 className="text-lg font-light text-black mb-6">Get in Touch</h2>
+              <p className="text-gray-700 leading-relaxed mb-8">
+                We welcome collaborations, inquiries, and conversations about architecture, design, and the spaces we inhabit. Reach out to discuss your project or simply to connect.
+              </p>
+            </div>
+            
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-base font-medium text-black mb-4">General Enquiries</h3>
+                <p className="text-gray-700">mail@studiogravitas.com</p>
+              </div>
+              
+              <div>
+                <h3 className="text-base font-medium text-black mb-4">India Office</h3>
+                <div className="text-gray-700 space-y-1">
+                  <p>Studio Gravitas</p>
+                  <p>New Delhi, India</p>
+                  <p>T +91 11 1234 5678</p>
+                  <p>india@studiogravitas.com</p>
+                </div>
+              </div>
+              
+              <div>
+                <h3 className="text-base font-medium text-black mb-4">International Projects</h3>
+                <p className="text-gray-700">international@studiogravitas.com</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-gray-50 p-8">
+            <h3 className="text-lg font-light text-black mb-6">Send us a Message</h3>
+            
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-black mb-2">
+                  Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
+                  required
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-black mb-2">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
+                  required
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-black mb-2">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="6"
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black resize-none"
+                  required
+                />
+              </div>
+              
+              <button
+                type="submit"
+                className="w-full bg-black text-white p-3 rounded-md hover:bg-gray-800 transition-colors font-light"
+              >
+                Send Message
+              </button>
+            </form>
+            
+
+          </div>
+        </div>
       </div>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <Label htmlFor="name">Name</Label>
-          <Input
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <Label htmlFor="message">Message</Label>
-          <Textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <Button type="submit">Send</Button>
-      </form>
-      {status && (
-        <p className="text-green-600 text-base sm:text-lg">{status}</p>
-      )}
     </div>
   );
 }

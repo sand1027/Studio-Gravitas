@@ -2,7 +2,7 @@ import ClientLayout from "@/components/ClientLayout";
 import "./globals.css";
 
 export const metadata = {
-  title: "MORQ - Architecture Studio",
+  title: "Studio Gravitas - Architecture Studio",
   description: "Architecture studio firm based in Italy and Australia",
 };
 
