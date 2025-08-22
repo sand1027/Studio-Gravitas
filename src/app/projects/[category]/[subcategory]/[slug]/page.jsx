@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Edit, Trash2, Eye, EyeOff, ChevronDown, ChevronUp } from "lucide-react";
+import { Edit, Trash2, Eye, EyeOff, ChevronDown, ChevronUp, Info } from "lucide-react";
 import toast from 'react-hot-toast';
 
 // Custom sidebar for project pages
@@ -9,17 +9,15 @@ function ProjectSidebar() {
   return (
     <aside className="hidden lg:block w-64 fixed h-screen z-50 pointer-events-none">
       <div className="pt-8 pb-3 pl-6 pointer-events-auto">
-        <h1 className="text-base font-normal tracking-wide text-white">STUDIO GRAVITAS</h1>
+        <h1 className="text-3xl font-normal tracking-wide text-white studio-title whitespace-nowrap">STUDIO GRAVITAS</h1>
       </div>
       
       <nav className="overflow-hidden pointer-events-auto">
-        <a href="/home" className="block py-1 pl-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Home</a>
-        <a href="/architecture" className="block py-1 pl-6 text-xs font-normal transition-colors text-white opacity-100 no-underline">Architecture</a>
-        <a href="/art" className="block py-1 pl-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Art</a>
-        <a href="/objects" className="block py-1 pl-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Objects</a>
-        <a href="/thoughts" className="block py-1 pl-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Thoughts</a>
-        <a href="/about" className="block py-1 pl-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">About us</a>
-        <a href="/contact" className="block py-1 pl-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Contact</a>
+        <a href="/architecture" className="block py-0.5 pl-6 text-xs font-normal transition-colors text-white opacity-100 no-underline mb-3">Architecture</a>
+        <div className="space-y-0">
+          <a href="/about" className="block py-0.5 pl-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">About us</a>
+          <a href="/contact" className="block py-0.5 pl-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Contact</a>
+        </div>
       </nav>
       
 
@@ -152,7 +150,11 @@ export default function ProjectDetail({ params }) {
   };
 
   if (!paramsResolved) {
-    return <div className="flex items-center justify-center min-h-screen bg-white">Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-white">
+        <div className="w-8 h-8 border-2 border-gray-300 border-t-black rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
   if (!project) {
@@ -183,47 +185,48 @@ export default function ProjectDetail({ params }) {
                 alt={`${project.title} ${idx + 1}`}
                 className="w-full h-full object-cover"
               />
-              {idx === 0 && (
-                <div className="absolute top-8 left-72 right-8 z-10 text-white">
-                  <div>
-                    <h1 className="text-3xl lg:text-4xl font-light tracking-wide mb-2">{project.title}</h1>
-                    <div className="text-base opacity-90">
-                      {project.metadata.location} • {project.metadata.year}
-                    </div>
-                  </div>
-                </div>
-              )}
+
               
               {/* Individual image content with dynamic positioning */}
               {project.imageContents && project.imageContents[idx] && (
-                <div className={`absolute bottom-16 z-10 text-white max-w-xs ${
+                <div className={`absolute bottom-16 z-10 text-white max-w-lg ${
                   project.imageLayouts && project.imageLayouts[idx] === 'right' 
                     ? 'right-6' 
                     : 'left-6'
-                }`}>
+                }`} style={{fontFamily: '"Segoe UI", "SegoeUICustom", sans-serif'}}>
                   {/* Project Title */}
                   {project.imageTitles && project.imageTitles[idx] && (
-                    <h3 className="text-lg font-medium mb-1">
-                      {project.imageTitles[idx]}
-                    </h3>
+                    <div className="flex items-center space-x-2 mb-3">
+                      <h3 className="text-3xl font-semibold leading-none">
+                        {project.imageTitles[idx]}
+                      </h3>
+                      {idx === 0 && (
+                        <button
+                          onClick={() => setShowDetails(true)}
+                          className="text-white hover:text-gray-300 transition-colors cursor-pointer"
+                        >
+                          <Info size={16} />
+                        </button>
+                      )}
+                    </div>
                   )}
                   
                   {/* Progress */}
                   {project.imageProgress && project.imageProgress[idx] && (
-                    <div className="text-xs opacity-90 mb-1">
+                    <div className="text-xs text-gray-400 leading-none">
                       {project.imageProgress[idx]}
                     </div>
                   )}
                   
                   {/* Subheading */}
                   {project.imageSubheadings && project.imageSubheadings[idx] && (
-                    <div className="text-sm font-light opacity-80 mb-3">
+                    <div className="text-base font-medium opacity-90 mb-4">
                       {project.imageSubheadings[idx]}
                     </div>
                   )}
                   
                   {/* Content */}
-                  <div className="text-xs font-light leading-tight opacity-80">
+                  <div className="text-sm font-medium leading-relaxed opacity-90">
                     <div dangerouslySetInnerHTML={{ __html: project.imageContents[idx].replace(/\n/g, '<br />') }} />
                   </div>
                 </div>
@@ -234,26 +237,23 @@ export default function ProjectDetail({ params }) {
           ))}
         </div>
         
-        <button 
-          onClick={() => setShowDetails(true)}
-          className="fixed bottom-8 right-8 z-20 bg-black bg-opacity-20 backdrop-blur-sm text-white px-4 py-2 text-xs font-light tracking-wide hover:bg-opacity-30 transition-all"
-        >
-          PROJECT DETAILS
-        </button>
+
         
-        <button
-          onClick={handleEditClick}
-          className="hidden xl:flex fixed top-8 right-8 z-20 bg-black bg-opacity-20 backdrop-blur-sm text-white px-4 py-2 text-xs font-light tracking-wide hover:bg-opacity-30 transition-all items-center space-x-2"
-        >
-          <Edit size={16} />
-          <span>EDIT PROJECT</span>
-        </button>
+        {currentImageIndex === project.galleryImages.length - 1 && (
+          <button
+            onClick={handleEditClick}
+            className="hidden xl:flex fixed bottom-8 left-8 z-20 text-white px-3 py-2 text-xs font-light tracking-wide hover:text-gray-300 transition-all items-center space-x-1 cursor-pointer"
+          >
+            <Edit size={14} />
+            <span>EDIT</span>
+          </button>
+        )}
         
         {/* Custom Scroll to Top for Desktop */}
         {showScrollTop && (
           <button
             onClick={scrollToTop}
-            className="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-20 backdrop-blur-sm hover:bg-opacity-30 text-white p-3 rounded-full transition-all duration-300 z-20 hover:scale-110"
+            className="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-transparent hover:bg-white hover:bg-opacity-20 text-white hover:text-gray-200 p-3 rounded-full transition-all duration-300 z-20 hover:scale-110 border border-white border-opacity-30"
             aria-label="Scroll to top"
           >
             <ChevronUp size={20} />
@@ -280,48 +280,36 @@ export default function ProjectDetail({ params }) {
           {/* Mobile Menu */}
           {showMobileMenu && (
             <div className="bg-white border-t border-gray-100">
-              <nav className="p-4 space-y-3">
-                <a 
-                  href="/home" 
-                  className="block py-2 text-base font-light text-gray-800 hover:text-black transition-colors"
-                  onClick={() => setShowMobileMenu(false)}
-                >
-                  Home
-                </a>
+              <nav className="p-4">
                 <a 
                   href="/architecture" 
-                  className="block py-2 text-base font-light text-gray-800 hover:text-black transition-colors"
+                  className="block py-1 text-base font-light text-gray-800 hover:text-black transition-colors mb-4"
                   onClick={() => setShowMobileMenu(false)}
                 >
                   Architecture
                 </a>
-                <a 
-                  href="/art" 
-                  className="block py-2 text-base font-light text-gray-800 hover:text-black transition-colors"
-                  onClick={() => setShowMobileMenu(false)}
-                >
-                  Arts
-                </a>
-                <a 
-                  href="/objects" 
-                  className="block py-2 text-base font-light text-gray-800 hover:text-black transition-colors"
-                  onClick={() => setShowMobileMenu(false)}
-                >
-                  Objects
-                </a>
-                <a 
-                  href="/thoughts" 
-                  className="block py-2 text-base font-light text-gray-800 hover:text-black transition-colors"
-                  onClick={() => setShowMobileMenu(false)}
-                >
-                  Thoughts
-                </a>
+                <div className="space-y-2">
+                  <a 
+                    href="/about" 
+                    className="block py-1 text-base font-light text-gray-800 hover:text-black transition-colors"
+                    onClick={() => setShowMobileMenu(false)}
+                  >
+                    About us
+                  </a>
+                  <a 
+                    href="/contact" 
+                    className="block py-1 text-base font-light text-gray-800 hover:text-black transition-colors"
+                    onClick={() => setShowMobileMenu(false)}
+                  >
+                    Contact
+                  </a>
+                </div>
               </nav>
             </div>
           )}
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-8" style={{fontFamily: '"Segoe UI", "SegoeUICustom", sans-serif'}}>
           {/* Project Header */}
           <div className="p-6 bg-gray-50">
             <h1 className="text-2xl font-light tracking-wide mb-3">{project.title}</h1>
@@ -396,72 +384,148 @@ export default function ProjectDetail({ params }) {
                   alt={`${project.title} ${idx + 1}`}
                   className="w-full h-auto object-cover"
                 />
-                
-                {/* Individual Image Content for Mobile */}
-                {project.imageContents && project.imageContents[idx] && (
-                  <div className="p-6 bg-gray-50">
-                    {project.imageTitles && project.imageTitles[idx] && (
-                      <h4 className="text-base font-medium mb-2">
-                        {project.imageTitles[idx]}
-                      </h4>
-                    )}
-                    
-                    {project.imageProgress && project.imageProgress[idx] && (
-                      <div className="text-xs text-gray-600 mb-1">
-                        {project.imageProgress[idx]}
-                      </div>
-                    )}
-                    
-                    {project.imageSubheadings && project.imageSubheadings[idx] && (
-                      <div className="text-sm font-light text-gray-600 mb-3">
-                        {project.imageSubheadings[idx]}
-                      </div>
-                    )}
-                    
-                    <div className="text-sm text-gray-700 leading-relaxed">
-                      <div dangerouslySetInnerHTML={{ __html: project.imageContents[idx].replace(/\n/g, '<br />') }} />
-                    </div>
-                  </div>
-                )}
               </div>
             ))}
           </div>
+          
+          {/* Content at the End - Show Only Once */}
+          {project.imageContents && project.imageContents[0] && (
+            <div className="px-6">
+              <div className="p-6 bg-gray-50 rounded-lg">
+                {project.imageTitles && project.imageTitles[0] && (
+                  <h4 className="text-base font-medium mb-2">
+                    {project.imageTitles[0]}
+                  </h4>
+                )}
+                
+                {project.imageProgress && project.imageProgress[0] && (
+                  <div className="text-xs text-gray-600 mb-1">
+                    {project.imageProgress[0]}
+                  </div>
+                )}
+                
+                {project.imageSubheadings && project.imageSubheadings[0] && (
+                  <div className="text-sm font-light text-gray-600 mb-3">
+                    {project.imageSubheadings[0]}
+                  </div>
+                )}
+                
+                <div className="text-sm text-gray-700 leading-relaxed">
+                  <div dangerouslySetInnerHTML={{ __html: project.imageContents[0].replace(/\n/g, '<br />') }} />
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
       {showDetails && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-black bg-opacity-80 backdrop-blur-sm rounded-lg max-w-md w-full p-6 text-white">
-            <h2 className="text-xl font-light mb-4">Project Details</h2>
-            <div className="space-y-4">
-              {project.features && (
+        <div className="fixed inset-0 bg-transparent z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg max-w-2xl w-full p-8 text-black shadow-2xl max-h-[80vh] overflow-y-auto" style={{fontFamily: '"Segoe UI", "SegoeUICustom", sans-serif'}}>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-light text-black">{project.title}</h2>
+              <button
+                onClick={() => setShowDetails(false)}
+                className="text-gray-500 hover:text-black transition-colors text-2xl"
+              >
+                ×
+              </button>
+            </div>
+            
+            <div className="space-y-6">
+              {/* Basic Info */}
+              <div className="bg-gray-50 rounded-lg p-6">
+                <h3 className="text-lg font-medium mb-4 text-black">Project Details</h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between py-2 border-b border-gray-200">
+                    <span className="text-gray-600">Location</span>
+                    <span className="text-black font-medium">{project.metadata?.location}</span>
+                  </div>
+                  <div className="flex justify-between py-2 border-b border-gray-200">
+                    <span className="text-gray-600">Year</span>
+                    <span className="text-black font-medium">{project.metadata?.year}</span>
+                  </div>
+                  {project.metadata?.area && (
+                    <div className="flex justify-between py-2 border-b border-gray-200">
+                      <span className="text-gray-600">Area</span>
+                      <span className="text-black font-medium">{project.metadata.area}</span>
+                    </div>
+                  )}
+                  <div className="flex justify-between py-2 border-b border-gray-200">
+                    <span className="text-gray-600">Status</span>
+                    <span className="text-black font-medium">{project.metadata?.status}</span>
+                  </div>
+                  <div className="flex justify-between py-2 border-b border-gray-200">
+                    <span className="text-gray-600">Category</span>
+                    <span className="text-black font-medium">{project.category}</span>
+                  </div>
+                  <div className="flex justify-between py-2 border-b border-gray-200">
+                    <span className="text-gray-600">Type</span>
+                    <span className="text-black font-medium">{project.subcategory?.replace('-', ' ')}</span>
+                  </div>
+                  {project.metadata?.budget && (
+                    <div className="flex justify-between py-2">
+                      <span className="text-gray-600">Budget</span>
+                      <span className="text-black font-medium">{project.metadata.budget}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Description */}
+              <div>
+                <h3 className="text-lg font-medium mb-3 text-black">Description</h3>
+                <p className="text-gray-700 leading-relaxed">
+                  {project.detailedDescription || project.description || 'No description available'}
+                </p>
+              </div>
+
+              {/* Team & Collaboration */}
+              {(project.metadata?.client || project.metadata?.contractor) && (
                 <div>
-                  <h4 className="text-sm font-medium mb-2">Features</h4>
-                  <ul className="space-y-1 text-sm">
-                    {project.features.map((feature, i) => (
-                      <li key={i} className="flex items-start">
-                        <span className="w-1 h-1 bg-white rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                  <h3 className="text-lg font-medium mb-4 text-black">Team</h3>
+                  <div className="space-y-3">
+                    {project.metadata.client && (
+                      <div className="flex justify-between py-2 border-b border-gray-100">
+                        <span className="text-gray-600">Client</span>
+                        <span className="text-black font-medium">{project.metadata.client}</span>
+                      </div>
+                    )}
+                    {project.metadata.contractor && (
+                      <div className="flex justify-between py-2 border-b border-gray-100">
+                        <span className="text-gray-600">Contractor</span>
+                        <span className="text-black font-medium">{project.metadata.contractor}</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div><span className="font-medium">Area:</span> {project.metadata.area}</div>
-                <div><span className="font-medium">Status:</span> {project.metadata.status}</div>
-                {project.metadata.client && <div><span className="font-medium">Client:</span> {project.metadata.client}</div>}
-                {project.metadata.team && <div><span className="font-medium">Team:</span> {project.metadata.team}</div>}
-                {project.metadata.contractor && <div><span className="font-medium">Contractor:</span> {project.metadata.contractor}</div>}
-                {project.metadata.budget && <div><span className="font-medium">Budget:</span> {project.metadata.budget}</div>}
+
+              {/* Features */}
+              {project.features && project.features.filter(f => f.trim()).length > 0 && (
+                <div>
+                  <h3 className="text-lg font-medium mb-4 text-black">Key Features</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {project.features.filter(f => f.trim()).map((feature, i) => (
+                      <div key={i} className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+                        <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-gray-700 text-sm">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+
+
+              {/* Gallery Info */}
+              <div className="pt-4 border-t border-gray-100">
+                <div className="flex justify-between items-center text-sm text-gray-500">
+                  <span>{project.galleryImages?.length || 0} images in gallery</span>
+                  <span>Created {new Date(project.createdAt).toLocaleDateString()}</span>
+                </div>
               </div>
             </div>
-            <button
-              onClick={() => setShowDetails(false)}
-              className="mt-6 w-full bg-black text-white p-3 rounded-md hover:bg-gray-800"
-            >
-              Close
-            </button>
           </div>
         </div>
       )}

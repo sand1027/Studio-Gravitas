@@ -2,11 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Info, X, ChevronLeft, ChevronRight } from "lucide-react";
-import LoadingScreen from "@/components/LoadingScreen";
-
 export default function Architecture() {
   const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [showFullscreen, setShowFullscreen] = useState(false);
   const [currentProject, setCurrentProject] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -17,16 +14,10 @@ export default function Architecture() {
       try {
         const res = await fetch('/api/projects');
         const data = await res.json();
-        // Filter only architecture projects
-        const architectureProjects = data.projects?.filter(p => p.category === 'architecture') || [];
-        setProjects(architectureProjects);
+        // Show all projects (architecture, thoughts, arts, objects)
+        setProjects(data.projects || []);
       } catch (error) {
         console.error('Error fetching projects:', error);
-      } finally {
-        // Add a small delay to show the loading screen
-        setTimeout(() => {
-          setLoading(false);
-        }, 1500);
       }
     };
 
@@ -105,25 +96,15 @@ export default function Architecture() {
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [showFullscreen, currentProject]);
 
-  if (loading) {
-    return <LoadingScreen onComplete={() => setLoading(false)} />;
-  }
+
 
   return (
     <>
       <div className="min-h-screen bg-white p-8 lg:p-12">
-        <div className="max-w-7xl mx-auto space-y-12">
-          <div className="space-y-4">
-            <h1 className="text-2xl lg:text-3xl font-light tracking-wide text-black">Architecture</h1>
-            <div className="w-16 h-px bg-black"></div>
-            <p className="text-gray-500 text-base max-w-2xl">
-              Explore our architectural projects spanning residential, commercial, and cultural spaces.
-            </p>
-          </div>
-
+        <div className="max-w-7xl mx-auto">
           {projects.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {projects.map((project) => (
+            {projects.filter(p => p.category?.toLowerCase() !== 'thoughts').sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).map((project) => (
               <div
                 key={project.id}
                 className="bg-white rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 group relative cursor-pointer"
@@ -139,11 +120,11 @@ export default function Architecture() {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-base font-light tracking-wide text-black mb-3 uppercase">{project.title}</h3>
-                  <p className="text-gray-400 text-xs mb-2 uppercase tracking-wide">{project.subcategory.replace('-', ' ')}</p>
-                  <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
-                    {project.description}
-                  </p>
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-base font-light tracking-wide text-black uppercase">{project.title}</h3>
+                    <span className="text-xs text-gray-400 uppercase tracking-wide">{project.category}</span>
+                  </div>
+                  <p className="text-gray-400 text-xs mb-2 uppercase tracking-wide">{project.subcategory?.replace('-', ' ')}</p>
                   {project.metadata && (
                     <div className="mt-4 flex items-center justify-between text-xs text-gray-400">
                       <span>{project.metadata.location}</span>
@@ -153,10 +134,75 @@ export default function Architecture() {
                 </div>
               </div>
             ))}
+            
+
+            
+            {/* Art Card - Temporarily always show for demo */}
+            <div
+              className="bg-white rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 group relative cursor-pointer"
+              onClick={() => {
+                window.location.href = '/art';
+              }}
+            >
+              <div className="w-full h-64 lg:h-72 bg-gray-200">
+                <img
+                  src={projects.find(p => p.category?.toLowerCase() === 'art')?.coverImage || 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}
+                  alt="Art"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-base font-light tracking-wide text-black mb-3 uppercase">Art</h3>
+                <span className="text-xs text-gray-400 uppercase tracking-wide">Art</span>
+              </div>
+            </div>
+            
+            {/* Objects Card - Temporarily always show for demo */}
+            <div
+              className="bg-white rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 group relative cursor-pointer"
+              onClick={() => {
+                window.location.href = '/objects';
+              }}
+            >
+              <div className="w-full h-64 lg:h-72 bg-gray-200">
+                <img
+                  src={projects.find(p => p.category?.toLowerCase() === 'objects')?.coverImage || 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}
+                  alt="Objects"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-base font-light tracking-wide text-black mb-3 uppercase">Objects</h3>
+                <span className="text-xs text-gray-400 uppercase tracking-wide">Objects</span>
+              </div>
+            </div>
+            
+            {/* Thoughts Card - Temporarily always show for demo */}
+            <div
+              className="bg-white rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 group relative cursor-pointer"
+              onClick={() => {
+                window.location.href = '/thoughts';
+              }}
+            >
+              <div className="w-full h-64 lg:h-72 bg-gray-200">
+                <img
+                  src={projects.find(p => p.category?.toLowerCase() === 'thoughts')?.coverImage || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}
+                  alt="Thoughts"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-base font-light tracking-wide text-black mb-3 uppercase">Thoughts</h3>
+                <span className="text-xs text-gray-400 uppercase tracking-wide">Thoughts</span>
+              </div>
+            </div>
+            
+
+
             </div>
           ) : (
-            <div className="text-center py-12">
-              <p className="text-gray-500">No architecture projects found</p>
+            <div className="flex items-center justify-center py-12">
+              <div className="w-8 h-8 border-2 border-gray-300 border-t-black rounded-full animate-spin"></div>
             </div>
           )}
         </div>
@@ -220,8 +266,10 @@ export default function Architecture() {
                 
                 <div className="absolute bottom-6 left-6 right-6">
                   <div className="text-xs text-white opacity-60 space-y-1">
-                    <p>Architecture Studio</p>
-                    <p>India International</p>
+                    <p>Designed and developed by</p>
+                    <a href="https://www.linkedin.com/in/sandeep-v-a6aaa529b/" target="_blank" rel="noopener noreferrer" className="text-white opacity-60 hover:opacity-100 transition-opacity">
+                      Sandeep
+                    </a>
                   </div>
                 </div>
               </aside>
