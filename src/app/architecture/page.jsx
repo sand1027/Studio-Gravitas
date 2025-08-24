@@ -100,109 +100,35 @@ export default function Architecture() {
 
   return (
     <>
-      <div className="min-h-screen bg-white p-8 lg:p-12">
-        <div className="max-w-7xl mx-auto">
+      <div className="min-h-screen bg-white p-4 lg:p-8">
+        <div className="max-w-full mx-auto">
           {projects.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {projects.filter(p => p.category?.toLowerCase() !== 'thoughts').sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).map((project) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.filter(p => p.category?.toLowerCase() === 'architecture').sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).map((project) => (
               <div
                 key={project.id}
-                className="bg-white rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 group relative cursor-pointer"
+                className="bg-white overflow-hidden hover:shadow-xl transition-all duration-300 group relative cursor-pointer"
                 onClick={() => {
                   window.location.href = `/projects/${project.category}/${project.subcategory}/${project.slug}`;
                 }}
               >
-                <div className="w-full h-64 lg:h-72 bg-gray-200">
+                <div className="w-full h-64 lg:h-80 bg-gray-200">
                   <img
                     src={project.coverImage || 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}
                     alt={project.title}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-base font-light tracking-wide text-black uppercase">{project.title}</h3>
-                    <span className="text-xs text-gray-400 uppercase tracking-wide">{project.category}</span>
-                  </div>
-                  <p className="text-gray-400 text-xs mb-2 uppercase tracking-wide">{project.subcategory?.replace('-', ' ')}</p>
-                  {project.metadata && (
-                    <div className="mt-4 flex items-center justify-between text-xs text-gray-400">
-                      <span>{project.metadata.location}</span>
-                      <span>{project.metadata.year}</span>
-                    </div>
-                  )}
+                <div className="p-2">
+                  <h3 className="text-sm font-light tracking-wide text-black uppercase">{project.title}</h3>
                 </div>
               </div>
             ))}
-            
-
-            
-            {/* Art Card - Temporarily always show for demo */}
-            <div
-              className="bg-white rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 group relative cursor-pointer"
-              onClick={() => {
-                window.location.href = '/art';
-              }}
-            >
-              <div className="w-full h-64 lg:h-72 bg-gray-200">
-                <img
-                  src={projects.find(p => p.category?.toLowerCase() === 'art')?.coverImage || 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}
-                  alt="Art"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-base font-light tracking-wide text-black mb-3 uppercase">Art</h3>
-                <span className="text-xs text-gray-400 uppercase tracking-wide">Art</span>
-              </div>
-            </div>
-            
-            {/* Objects Card - Temporarily always show for demo */}
-            <div
-              className="bg-white rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 group relative cursor-pointer"
-              onClick={() => {
-                window.location.href = '/objects';
-              }}
-            >
-              <div className="w-full h-64 lg:h-72 bg-gray-200">
-                <img
-                  src={projects.find(p => p.category?.toLowerCase() === 'objects')?.coverImage || 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}
-                  alt="Objects"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-base font-light tracking-wide text-black mb-3 uppercase">Objects</h3>
-                <span className="text-xs text-gray-400 uppercase tracking-wide">Objects</span>
-              </div>
-            </div>
-            
-            {/* Thoughts Card - Temporarily always show for demo */}
-            <div
-              className="bg-white rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 group relative cursor-pointer"
-              onClick={() => {
-                window.location.href = '/thoughts';
-              }}
-            >
-              <div className="w-full h-64 lg:h-72 bg-gray-200">
-                <img
-                  src={projects.find(p => p.category?.toLowerCase() === 'thoughts')?.coverImage || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}
-                  alt="Thoughts"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-base font-light tracking-wide text-black mb-3 uppercase">Thoughts</h3>
-                <span className="text-xs text-gray-400 uppercase tracking-wide">Thoughts</span>
-              </div>
-            </div>
-            
-
-
             </div>
           ) : (
-            <div className="flex items-center justify-center py-12">
-              <div className="w-8 h-8 border-2 border-gray-300 border-t-black rounded-full animate-spin"></div>
+            <div className="flex flex-col items-center justify-center py-20">
+              <div className="w-8 h-8 border-2 border-gray-300 border-t-black rounded-full animate-spin mb-4"></div>
+              <p className="text-gray-500 font-light">Loading architecture projects...</p>
             </div>
           )}
         </div>
@@ -251,7 +177,7 @@ export default function Architecture() {
             <div className="absolute top-0 left-0 w-64 h-full z-50">
               <aside className="w-64 h-full overflow-hidden">
                 <div className="pt-8 pb-6 px-6">
-                  <h1 className="text-sm font-normal tracking-wide text-white">STUDIO GRAVITAS</h1>
+                  <a href="/" className="text-4xl font-thin tracking-wide text-white studio-title whitespace-nowrap hover:text-gray-300 transition-colors" style={{fontWeight: '100 !important', fontFamily: 'Montserrat, sans-serif !important'}}>STUDIO GRAVITAS</a>
                 </div>
                 
                 <nav className="overflow-hidden">

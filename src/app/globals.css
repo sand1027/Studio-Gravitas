@@ -7,34 +7,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-/* Gineso Font for Studio Title */
-@font-face {
-  font-family: 'Gineso';
-  src: url('/fonts/GinesoSoft-NorReg.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Custom Segoe UI Font */
-@font-face {
-  font-family: 'SegoeUICustom';
-  src: url('/fonts/SegoeUI-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'SegoeUICustom';
-  src: url('/fonts/SegoeUI-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap");
 
 @theme inline {
   --color-background: var(--background);
@@ -151,42 +124,77 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: "Segoe UI", "SegoeUICustom", -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important;
+    font-family: "Poppins", "Inter", -apple-system,
+      BlinkMacSystemFont, Roboto, sans-serif !important;
+    font-weight: 300;
   }
-  
+
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: "Segoe UI", "SegoeUICustom", sans-serif !important;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Poppins", "Inter", sans-serif !important;
+    font-weight: 400;
   }
-  
+
+  p,
+  div,
+  span {
+    font-weight: 300;
+  }
+
   .studio-title {
-    font-family: "Gineso", "Segoe UI", "SegoeUICustom", sans-serif !important;
+    font-family: "Montserrat", "Inter", "Segoe UI", "SegoeUICustom", sans-serif !important;
+    font-weight: 300 !important;
   }
-  
+
   /* Transparent scrollbar for project pages */
   .project-scroll::-webkit-scrollbar {
     width: 0px;
     background: transparent;
   }
-  
+
   .project-scroll::-webkit-scrollbar-thumb {
     background: transparent;
   }
-  
+
   .project-scroll {
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
-  
+
   /* Hide main sidebar on project pages */
   .project-page ~ * aside,
   .project-page + * aside {
     display: none !important;
+  }
+
+  /* Ensure content text is not bold */
+  .content-text {
+    font-weight: 300 !important;
+  }
+
+  .content-text h1,
+  .content-text h2,
+  .content-text h3,
+  .content-text h4,
+  .content-text h5,
+  .content-text h6 {
+    font-weight: 300 !important;
+  }
+
+  .content-text p,
+  .content-text div,
+  .content-text span {
+    font-weight: 300 !important;
   }
 }

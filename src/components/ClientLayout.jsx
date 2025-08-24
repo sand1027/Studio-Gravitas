@@ -11,10 +11,11 @@ export default function ClientLayout({ children }) {
   const isLandingPage = pathname === '/landing';
   const isThoughtsPage = pathname === '/thoughts';
   const isArtPage = pathname === '/art';
+  const isArtsPage = pathname === '/arts';
   const isObjectsPage = pathname === '/objects';
   const isProjectPage = pathname?.startsWith('/projects/');
   
-  if (isRootPage || isLandingPage || isThoughtsPage || isArtPage || isObjectsPage || isProjectPage) {
+  if (isRootPage || isLandingPage || isThoughtsPage || isArtPage || isArtsPage || isObjectsPage || isProjectPage) {
     return (
       <div className="w-full">
         {children}
@@ -36,7 +37,7 @@ export default function ClientLayout({ children }) {
   return (
     <div className="flex flex-col lg:flex-row min-h-screen">
       <AppSidebar />
-      <main className="flex-1 p-6 lg:p-0 bg-white min-h-screen pt-20 lg:pt-0 lg:ml-64">
+      <main className="flex-1 p-6 lg:p-0 bg-white min-h-screen pt-20 lg:pt-0 lg:ml-80">
         {children}
       </main>
       <ScrollToTop />
