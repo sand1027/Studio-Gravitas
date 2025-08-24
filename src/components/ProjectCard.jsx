@@ -41,8 +41,8 @@ export default function ProjectCard({ title, description, image, href, projectIn
             </div>
             <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
           </div>
-          <div className="p-6">
-            <h3 className="text-base font-light tracking-wide text-black mb-3 uppercase">{title}</h3>
+          <div className="pt-2 px-4 pb-4">
+            <h3 className="text-base font-light tracking-wide text-black uppercase">{title}</h3>
             <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
               {description}
             </p>

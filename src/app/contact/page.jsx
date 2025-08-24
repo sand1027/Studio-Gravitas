@@ -42,10 +42,10 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="max-w-6xl mx-auto px-8 py-16">
-        <div className="space-y-4 mb-16">
-          <h1 className="text-2xl lg:text-3xl font-light tracking-wide text-black">Contact</h1>
+    <div className="min-h-screen bg-white lg:ml-64">
+      <div className="max-w-6xl mx-auto px-8 py-16 content-text">
+        <div className="mb-16">
+          <h1 className="text-4xl font-light tracking-wide text-black mb-4">Contact</h1>
           <div className="w-16 h-px bg-black"></div>
         </div>
         
@@ -53,20 +53,20 @@ export default function Contact() {
           <div className="space-y-12">
             <div>
               <h2 className="text-lg font-light text-black mb-6">Get in Touch</h2>
-              <p className="text-gray-700 leading-relaxed mb-8">
+              <p className="text-gray-600 leading-relaxed mb-8 font-light">
                 We welcome collaborations, inquiries, and conversations about architecture, design, and the spaces we inhabit. Reach out to discuss your project or simply to connect.
               </p>
             </div>
             
             <div className="space-y-8">
               <div>
-                <h3 className="text-base font-medium text-black mb-4">General Enquiries</h3>
-                <p className="text-gray-700">mail@studiogravitas.com</p>
+                <h3 className="text-base font-light text-black mb-4">General Enquiries</h3>
+                <p className="text-gray-600 font-light">mail@studiogravitas.com</p>
               </div>
               
               <div>
-                <h3 className="text-base font-medium text-black mb-4">India Office</h3>
-                <div className="text-gray-700 space-y-1">
+                <h3 className="text-base font-light text-black mb-4">India Office</h3>
+                <div className="text-gray-600 space-y-1 font-light">
                   <p>Studio Gravitas</p>
                   <p>New Delhi, India</p>
                   <p>T +91 11 1234 5678</p>
@@ -75,8 +75,8 @@ export default function Contact() {
               </div>
               
               <div>
-                <h3 className="text-base font-medium text-black mb-4">International Projects</h3>
-                <p className="text-gray-700">international@studiogravitas.com</p>
+                <h3 className="text-base font-light text-black mb-4">International Projects</h3>
+                <p className="text-gray-600 font-light">international@studiogravitas.com</p>
               </div>
             </div>
           </div>
@@ -86,7 +86,7 @@ export default function Contact() {
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-black mb-2">
+                <label htmlFor="name" className="block text-sm font-light text-black mb-2">
                   Name
                 </label>
                 <input
@@ -101,7 +101,7 @@ export default function Contact() {
               </div>
               
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-black mb-2">
+                <label htmlFor="email" className="block text-sm font-light text-black mb-2">
                   Email
                 </label>
                 <input
@@ -116,7 +116,7 @@ export default function Contact() {
               </div>
               
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-black mb-2">
+                <label htmlFor="message" className="block text-sm font-light text-black mb-2">
                   Message
                 </label>
                 <textarea

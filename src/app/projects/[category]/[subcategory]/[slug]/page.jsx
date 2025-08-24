@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Edit, Trash2, Eye, EyeOff, ChevronDown, ChevronUp, Info } from "lucide-react";
+import { Edit, Trash2, Eye, EyeOff, ChevronDown, ChevronUp, Square, SquareStack } from "lucide-react";
 import toast from 'react-hot-toast';
 
 // Custom sidebar for project pages
@@ -9,14 +9,17 @@ function ProjectSidebar() {
   return (
     <aside className="hidden lg:block w-64 fixed h-screen z-50 pointer-events-none">
       <div className="pt-8 pb-3 pl-6 pointer-events-auto">
-        <h1 className="text-3xl font-normal tracking-wide text-white studio-title whitespace-nowrap">STUDIO GRAVITAS</h1>
+        <a href="/" className="text-4xl font-thin tracking-wide text-white studio-title whitespace-nowrap hover:text-gray-300 transition-colors" style={{fontWeight: '100 !important', fontFamily: 'Montserrat, sans-serif !important'}}>STUDIO GRAVITAS</a>
       </div>
       
       <nav className="overflow-hidden pointer-events-auto">
-        <a href="/architecture" className="block py-0.5 pl-6 text-xs font-normal transition-colors text-white opacity-100 no-underline mb-3">Architecture</a>
-        <div className="space-y-0">
-          <a href="/about" className="block py-0.5 pl-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">About us</a>
-          <a href="/contact" className="block py-0.5 pl-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Contact</a>
+        <a href="/architecture" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Architecture</a>
+        <a href="/arts" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Arts</a>
+        <a href="/objects" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Objects</a>
+        <a href="/thoughts" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Thoughts</a>
+        <div className="mt-4 space-y-0">
+          <a href="/about" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">About</a>
+          <a href="/contact" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Contact</a>
         </div>
       </nav>
       
@@ -34,6 +37,7 @@ export default function ProjectDetail({ params }) {
   const [loading, setLoading] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showDetails, setShowDetails] = useState(false);
+  const [showContent, setShowContent] = useState({});
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const [project, setProject] = useState(null);
@@ -189,45 +193,56 @@ export default function ProjectDetail({ params }) {
               
               {/* Individual image content with dynamic positioning */}
               {project.imageContents && project.imageContents[idx] && (
-                <div className={`absolute bottom-16 z-10 text-white max-w-lg ${
+                <div className={`absolute bottom-8 z-10 text-white max-w-sm ${
                   project.imageLayouts && project.imageLayouts[idx] === 'right' 
                     ? 'right-6' 
                     : 'left-6'
                 }`} style={{fontFamily: '"Segoe UI", "SegoeUICustom", sans-serif'}}>
                   {/* Project Title */}
                   {project.imageTitles && project.imageTitles[idx] && (
-                    <div className="flex items-center space-x-2 mb-3">
-                      <h3 className="text-3xl font-semibold leading-none">
+                    <div className="mb-2 flex items-end space-x-1">
+                      <h3 className="text-3xl font-semibold leading-none" style={{fontFamily: 'Montserrat, sans-serif'}}>
                         {project.imageTitles[idx]}
                       </h3>
-                      {idx === 0 && (
-                        <button
-                          onClick={() => setShowDetails(true)}
-                          className="text-white hover:text-gray-300 transition-colors cursor-pointer"
-                        >
-                          <Info size={16} />
-                        </button>
-                      )}
+                      <button
+                        onClick={() => setShowContent(prev => ({...prev, [idx]: !prev[idx]}))}
+                        className="text-white hover:text-gray-300 transition-all duration-300 cursor-pointer p-1 mt-2"
+                      >
+                        {showContent[idx] ? 
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                          </svg> : 
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                          </svg>
+                        }
+                      </button>
                     </div>
                   )}
                   
-                  {/* Progress */}
+                  {/* Progress - Always visible */}
                   {project.imageProgress && project.imageProgress[idx] && (
-                    <div className="text-xs text-gray-400 leading-none">
+                    <div className="text-xs text-white leading-none mb-0.5">
                       {project.imageProgress[idx]}
                     </div>
                   )}
                   
-                  {/* Subheading */}
+                  {/* Subheading - Always visible */}
                   {project.imageSubheadings && project.imageSubheadings[idx] && (
-                    <div className="text-base font-medium opacity-90 mb-4">
+                    <div className="text-base font-medium opacity-90 mb-2">
                       {project.imageSubheadings[idx]}
                     </div>
                   )}
                   
-                  {/* Content */}
-                  <div className="text-sm font-medium leading-relaxed opacity-90">
-                    <div dangerouslySetInnerHTML={{ __html: project.imageContents[idx].replace(/\n/g, '<br />') }} />
+                  {/* Collapsible Content - Only main content */}
+                  <div className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                    showContent[idx] ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+                  }`}>
+                    <div className="text-sm font-medium leading-tight opacity-90 max-w-[22.5rem]">
+                      <div dangerouslySetInnerHTML={{ __html: project.imageContents[idx].replace(/\n/g, '<br />') }} />
+                    </div>
                   </div>
                 </div>
               )}

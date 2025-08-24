@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-function ObjectsSidebar() {
+function ArtsSidebar() {
   return (
     <aside className="w-64 fixed h-screen z-50 pointer-events-none">
       <div className="pt-8 pb-3 pl-6 pointer-events-auto">
@@ -11,8 +11,8 @@ function ObjectsSidebar() {
       
       <nav className="overflow-hidden pointer-events-auto">
         <a href="/architecture" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Architecture</a>
-        <a href="/arts" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Arts</a>
-        <a href="/objects" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-100 no-underline">Objects</a>
+        <a href="/arts" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-100 no-underline">Arts</a>
+        <a href="/objects" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Objects</a>
         <a href="/thoughts" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Thoughts</a>
         <div className="mt-6 space-y-0">
           <a href="/about" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">About</a>
@@ -23,34 +23,34 @@ function ObjectsSidebar() {
   );
 }
 
-export default function ObjectsPage() {
-  const [objectProjects, setObjectProjects] = useState([]);
+export default function ArtsPage() {
+  const [arts, setArts] = useState([]);
 
   useEffect(() => {
-    const fetchObjects = async () => {
+    const fetchArts = async () => {
       try {
         const res = await fetch('/api/projects');
         const data = await res.json();
-        const objectItems = data.projects?.filter(p => p.category?.toLowerCase() === 'objects') || [];
-        setObjectProjects(objectItems);
+        const artProjects = data.projects?.filter(p => p.category?.toLowerCase() === 'art' || p.category?.toLowerCase() === 'arts') || [];
+        setArts(artProjects);
       } catch (error) {
-        console.error('Error fetching objects:', error);
+        console.error('Error fetching arts:', error);
       }
     };
 
-    fetchObjects();
+    fetchArts();
   }, []);
 
   return (
     <div className="min-h-screen bg-black relative">
-      <ObjectsSidebar />
+      <ArtsSidebar />
       <div className="w-full h-screen overflow-y-auto snap-y snap-mandatory">
-        {objectProjects.length > 0 ? (
-          objectProjects.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).map((object) => (
-            <div key={object.id} className="w-full h-screen snap-start relative">
+        {arts.length > 0 ? (
+          arts.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).map((art) => (
+            <div key={art.id} className="w-full h-screen snap-start relative">
               <img
-                src={object.coverImage || 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80'}
-                alt={object.title}
+                src={art.coverImage || 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80'}
+                alt={art.title}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -59,22 +59,15 @@ export default function ObjectsPage() {
           <>
             <div className="w-full h-screen snap-start relative">
               <img
-                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
-                alt="Objects Demo 1"
+                src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                alt="Arts Demo 1"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="w-full h-screen snap-start relative">
               <img
-                src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
-                alt="Objects Demo 2"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="w-full h-screen snap-start relative">
-              <img
-                src="https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
-                alt="Objects Demo 3"
+                src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                alt="Arts Demo 2"
                 className="w-full h-full object-cover"
               />
             </div>
