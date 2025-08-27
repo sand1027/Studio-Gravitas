@@ -1,8 +1,8 @@
 export default function About() {
   return (
-    <div className="min-h-screen bg-white lg:ml-64">
+    <div className="min-h-screen bg-white lg:ml-80">
       <div className="p-8 lg:p-12">
-        <div className="max-w-4xl mx-auto content-text">
+        <div className="max-w-4xl content-text">
           <div className="mb-12">
             <h1 className="text-4xl font-light tracking-wide text-black mb-4">About</h1>
             <div className="w-16 h-px bg-black"></div>

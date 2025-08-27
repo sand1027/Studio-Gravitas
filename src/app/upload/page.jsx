@@ -183,7 +183,6 @@ function SimpleUpload({ type, onBack }) {
                         accept="image/*"
                         onChange={(e) => handleFileUpload(e, index)}
                         className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
-                        required={index === 0}
                       />
                       
                       {img && (
@@ -459,7 +458,6 @@ export default function Upload() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter password"
                 className="w-full p-3 border border-gray-300 rounded-md pr-10"
-                required
               />
               <button
                 type="button"
@@ -556,7 +554,7 @@ export default function Upload() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto lg:ml-80">
       <div className="space-y-6">
         <h1 className="text-3xl font-light tracking-wide">{editMode ? 'Edit Project' : 'Upload New Project'}</h1>
         <div className="w-16 h-px bg-black"></div>
@@ -572,7 +570,6 @@ export default function Upload() {
               value={formData.title}
               onChange={handleInputChange}
               className="w-full p-3 border border-gray-300 rounded-md"
-              required
             />
           </div>
           <div>
@@ -602,7 +599,6 @@ export default function Upload() {
               onChange={handleInputChange}
               placeholder="e.g., residential, urban, hospitality"
               className="w-full p-3 border border-gray-300 rounded-md"
-              required
             />
           </div>
           <div>
@@ -613,7 +609,6 @@ export default function Upload() {
               value={formData.location}
               onChange={handleInputChange}
               className="w-full p-3 border border-gray-300 rounded-md"
-              required
             />
           </div>
         </div>
@@ -626,7 +621,6 @@ export default function Upload() {
             onChange={handleInputChange}
             rows="3"
             className="w-full p-3 border border-gray-300 rounded-md"
-            required
           />
         </div>
 
@@ -830,7 +824,6 @@ export default function Upload() {
               value={formData.year}
               onChange={handleInputChange}
               className="w-full p-3 border border-gray-300 rounded-md"
-              required
             />
           </div>
           <div>

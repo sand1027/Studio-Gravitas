@@ -100,7 +100,7 @@ export default function Architecture() {
 
   return (
     <>
-      <div className="min-h-screen bg-white p-4 lg:p-8">
+      <div className="min-h-screen bg-white p-4 lg:p-8 lg:ml-80 lg:pt-24">
         <div className="max-w-full mx-auto">
           {projects.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -112,7 +112,7 @@ export default function Architecture() {
                   window.location.href = `/projects/${project.category}/${project.subcategory}/${project.slug}`;
                 }}
               >
-                <div className="w-full h-64 lg:h-80 bg-gray-200">
+                <div className="w-full h-48 lg:h-64 bg-gray-200">
                   <img
                     src={project.coverImage || 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}
                     alt={project.title}

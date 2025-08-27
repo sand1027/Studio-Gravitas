@@ -35,9 +35,9 @@ export default function ClientLayout({ children }) {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen">
+    <div className="min-h-screen">
       <AppSidebar />
-      <main className="flex-1 p-6 lg:p-0 bg-white min-h-screen pt-20 lg:pt-0 lg:ml-80">
+      <main className="p-6 lg:p-0 bg-white min-h-screen pt-20 lg:pt-0">
         {children}
       </main>
       <ScrollToTop />
