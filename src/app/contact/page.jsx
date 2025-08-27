@@ -44,10 +44,7 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-white lg:ml-80">
       <div className="max-w-6xl mx-auto px-8 py-16 content-text">
-        <div className="mb-16">
-          <h1 className="text-4xl font-light tracking-wide text-black mb-4">Contact</h1>
-          <div className="w-16 h-px bg-black"></div>
-        </div>
+
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="space-y-12">
