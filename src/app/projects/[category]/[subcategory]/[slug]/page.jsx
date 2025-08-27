@@ -240,7 +240,7 @@ export default function ProjectDetail({ params }) {
                   <div className={`transition-all duration-500 ease-in-out overflow-hidden ${
                     showContent[idx] ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
                   }`}>
-                    <div className="text-sm font-medium leading-tight opacity-90 max-w-[22.5rem]">
+                    <div className="text-sm font-semibold leading-tight opacity-90 max-w-[22.5rem]">
                       <div dangerouslySetInnerHTML={{ __html: project.imageContents[idx].replace(/\n/g, '<br />') }} />
                     </div>
                   </div>

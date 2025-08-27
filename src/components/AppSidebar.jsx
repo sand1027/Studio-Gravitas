@@ -81,15 +81,7 @@ export default function AppSidebar() {
             );
           })}
         </nav>
-        
-        <div className="absolute bottom-6 left-6 right-6">
-          <div className="text-xs text-gray-400 space-y-1">
-            <p>Designed and developed by</p>
-            <a href="https://www.linkedin.com/in/sandeep-v-a6aaa529b/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-600 transition-colors">
-              Sandeep
-            </a>
-          </div>
-        </div>
+
       </aside>
 
       {open && (
