@@ -84,7 +84,7 @@ export default function MainPage() {
     <div className="min-h-screen bg-white lg:bg-black relative pt-16 lg:pt-0">
       <MainSidebar open={open} setOpen={setOpen} />
       <div className={`w-5/6 h-72 lg:w-full lg:h-screen mx-auto transition-all duration-300 ease-in-out lg:transition-none ${
-        open ? 'mt-[220px] lg:mt-0' : 'mt-24 lg:mt-0'
+        open ? 'mt-[280px] lg:mt-0' : 'mt-24 lg:mt-0'
       }`}>
         {mainProject ? (
           <a 

@@ -140,14 +140,14 @@ export default function ThoughtsPage() {
       <div 
         ref={containerRef}
         className={`w-full h-screen overflow-y-auto snap-y snap-mandatory transition-all duration-300 ease-in-out lg:transform-none ${
-        menuOpen ? 'mt-[220px] lg:mt-0' : 'mt-0'
+        menuOpen ? 'mt-[275px] lg:mt-0' : 'mt-0'
       }`}>
         {thoughts.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).map((thought) => (
-          <div key={thought.id} className="w-full h-screen snap-start relative">
+          <div key={thought.id} className="w-full h-auto lg:h-screen snap-start relative mb-6 lg:mb-0">
             <img
               src={thought.coverImage || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80'}
               alt={thought.title}
-              className="w-full h-full object-cover"
+              className="w-[95%] mx-auto lg:w-full h-auto lg:h-full object-cover"
             />
             {/* {isAuthenticated && (
               <button

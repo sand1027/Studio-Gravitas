@@ -325,7 +325,7 @@ export default function ProjectDetail({ params }) {
 
       {/* Mobile View */}
       <div className={`lg:hidden min-h-screen bg-white transition-all duration-300 ease-in-out ${
-        open ? 'mt-[220px] lg:mt-0' : 'mt-0'
+        open ? 'mt-[260px] lg:mt-0' : 'mt-0'
       }`}>
         <div style={{fontFamily: '"Segoe UI", "SegoeUICustom", sans-serif'}}>
           {/* Project Header */}

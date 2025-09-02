@@ -99,39 +99,39 @@ export default function ObjectsPage() {
       <div 
         ref={containerRef}
         className={`w-full h-screen overflow-y-auto snap-y snap-mandatory transition-all duration-300 ease-in-out lg:transform-none ${
-        menuOpen ? 'mt-[220px] lg:mt-0' : 'mt-0'
+        menuOpen ? 'mt-[275px] lg:mt-0' : 'mt-0'
       }`}>
         {objectProjects.length > 0 ? (
           objectProjects.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).map((object) => (
-            <div key={object.id} className="w-full h-screen snap-start relative">
+            <div key={object.id} className="w-full h-auto lg:h-screen snap-start relative mb-6 lg:mb-0">
               <img
                 src={object.coverImage || 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80'}
                 alt={object.title}
-                className="w-full h-full object-cover"
+                className="w-[95%] mx-auto lg:w-full h-auto lg:h-full object-cover"
               />
             </div>
           ))
         ) : (
           <>
-            <div className="w-full h-screen snap-start relative">
+            <div className="w-full h-auto lg:h-screen snap-start relative mb-6 lg:mb-0">
               <img
                 src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
                 alt="Objects Demo 1"
-                className="w-full h-full object-cover"
+                className="w-[95%] mx-auto lg:w-full h-auto lg:h-full object-cover"
               />
             </div>
-            <div className="w-full h-screen snap-start relative">
+            <div className="w-full h-auto lg:h-screen snap-start relative mb-6 lg:mb-0">
               <img
                 src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
                 alt="Objects Demo 2"
-                className="w-full h-full object-cover"
+                className="w-[95%] mx-auto lg:w-full h-auto lg:h-full object-cover"
               />
             </div>
-            <div className="w-full h-screen snap-start relative">
+            <div className="w-full h-auto lg:h-screen snap-start relative mb-6 lg:mb-0">
               <img
                 src="https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
                 alt="Objects Demo 3"
-                className="w-full h-full object-cover"
+                className="w-[95%] mx-auto lg:w-full h-auto lg:h-full object-cover"
               />
             </div>
           </>
