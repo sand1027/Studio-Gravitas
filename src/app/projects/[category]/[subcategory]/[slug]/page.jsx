@@ -1,30 +1,75 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Edit, Trash2, Eye, EyeOff, ChevronDown, ChevronUp, Square, SquareStack } from "lucide-react";
+import { Edit, Trash2, Eye, EyeOff, ChevronDown, ChevronUp, ChevronRight, Square, SquareStack, Menu, X } from "lucide-react";
 import toast from 'react-hot-toast';
 
 // Custom sidebar for project pages
-function ProjectSidebar() {
-  return (
-    <aside className="hidden lg:block w-64 fixed h-screen z-50 pointer-events-none">
-      <div className="pt-8 pb-3 pl-6 pointer-events-auto">
-        <a href="/" className="text-4xl font-thin tracking-wide text-white studio-title whitespace-nowrap hover:text-gray-300 transition-colors" style={{fontWeight: '100 !important', fontFamily: 'Montserrat, sans-serif !important'}}>STUDIO GRAVITAS</a>
-      </div>
-      
-      <nav className="overflow-hidden pointer-events-auto">
-        <a href="/architecture" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Architecture</a>
-        <a href="/arts" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Arts</a>
-        <a href="/objects" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Objects</a>
-        <a href="/thoughts" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Thoughts</a>
-        <div className="mt-4 space-y-0">
-          <a href="/about" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">About</a>
-          <a href="/contact" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Contact</a>
-        </div>
-      </nav>
-      
+function ProjectSidebar({ open, setOpen }) {
 
-    </aside>
+  useEffect(() => {
+    const handleScroll = () => {
+      if (open) {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [open, setOpen]);
+
+  return (
+    <>
+      {/* Mobile Header */}
+      <div className="lg:hidden flex items-center justify-between p-4 bg-white/90 backdrop-blur-sm border-b border-gray-100/50 fixed top-0 left-0 right-0 z-50">
+        <a href="/" className="text-base font-thin tracking-wider whitespace-nowrap studio-title text-black" style={{fontWeight: '100'}}>STUDIO GRAVITAS</a>
+        <button 
+          onClick={() => setOpen(!open)} 
+          aria-label="Toggle menu"
+          className="p-2 hover:bg-gray-50/50 rounded-md transition-colors z-50 text-black"
+        >
+          {open ? <X size={18} /> : <Menu size={18} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`lg:hidden bg-white/90 backdrop-blur-sm border-b border-gray-100/50 fixed top-16 left-0 right-0 z-40 transform ${
+          open ? "translate-y-0" : "-translate-y-full"
+        } transition-transform duration-300 ease-in-out`}
+      >
+        <nav className="p-6 space-y-3">
+          <a href="/architecture" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Architecture</a>
+          <a href="/arts" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Arts</a>
+          <a href="/objects" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Objects</a>
+          <a href="/thoughts" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Thoughts</a>
+          <div className="mt-4 space-y-3">
+            <a href="/about" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>About</a>
+            <a href="/contact" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Contact</a>
+          </div>
+        </nav>
+      </div>
+
+      {/* Desktop Sidebar */}
+      <aside className="hidden lg:block w-64 fixed h-screen z-50 pointer-events-none">
+        <div className="pt-8 pb-3 pl-6 pointer-events-auto">
+          <a href="/" className="text-3xl font-thin tracking-wide text-white studio-title whitespace-nowrap hover:text-gray-300 transition-colors" style={{fontWeight: '100 !important', fontFamily: 'Montserrat, sans-serif !important'}}>STUDIO GRAVITAS</a>
+        </div>
+        
+        <nav className="overflow-hidden pointer-events-auto">
+          <a href="/architecture" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Architecture</a>
+          <a href="/arts" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Arts</a>
+          <a href="/objects" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Objects</a>
+          <a href="/thoughts" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Thoughts</a>
+          <div className="mt-4 space-y-0">
+            <a href="/about" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">About</a>
+            <a href="/contact" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Contact</a>
+          </div>
+        </nav>
+      </aside>
+
+
+    </>
   );
 }
 
@@ -39,6 +84,8 @@ export default function ProjectDetail({ params }) {
   const [showDetails, setShowDetails] = useState(false);
   const [showContent, setShowContent] = useState({});
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [showMobileContent, setShowMobileContent] = useState(false);
 
   const [project, setProject] = useState(null);
   const [paramsResolved, setParamsResolved] = useState(false);
@@ -173,8 +220,8 @@ export default function ProjectDetail({ params }) {
   }
 
   return (
-    <div className="project-page relative w-full h-screen bg-black">
-      <ProjectSidebar />
+    <div className="project-page relative w-full h-screen bg-white lg:bg-black pt-16 lg:pt-0">
+      <ProjectSidebar open={open} setOpen={setOpen} />
       
       {/* Desktop View */}
       <div className="hidden lg:block w-full h-screen">
@@ -277,156 +324,69 @@ export default function ProjectDetail({ params }) {
       </div>
 
       {/* Mobile View */}
-      <div className="lg:hidden min-h-screen bg-white">
-        {/* Mobile Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-100 z-10">
-          <div className="flex items-center justify-between p-4">
-            <div className="text-lg font-light tracking-wider">STUDIO GRAVITAS</div>
-            <button 
-              onClick={() => setShowMobileMenu(!showMobileMenu)}
-              className="p-2 hover:bg-gray-50 rounded-md transition-colors"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
-          
-          {/* Mobile Menu */}
-          {showMobileMenu && (
-            <div className="bg-white border-t border-gray-100">
-              <nav className="p-4">
-                <a 
-                  href="/architecture" 
-                  className="block py-1 text-base font-light text-gray-800 hover:text-black transition-colors mb-4"
-                  onClick={() => setShowMobileMenu(false)}
-                >
-                  Architecture
-                </a>
-                <div className="space-y-2">
-                  <a 
-                    href="/about" 
-                    className="block py-1 text-base font-light text-gray-800 hover:text-black transition-colors"
-                    onClick={() => setShowMobileMenu(false)}
-                  >
-                    About us
-                  </a>
-                  <a 
-                    href="/contact" 
-                    className="block py-1 text-base font-light text-gray-800 hover:text-black transition-colors"
-                    onClick={() => setShowMobileMenu(false)}
-                  >
-                    Contact
-                  </a>
-                </div>
-              </nav>
-            </div>
-          )}
-        </div>
-
-        <div className="space-y-8" style={{fontFamily: '"Segoe UI", "SegoeUICustom", sans-serif'}}>
+      <div className={`lg:hidden min-h-screen bg-white transition-all duration-300 ease-in-out ${
+        open ? 'mt-[220px] lg:mt-0' : 'mt-0'
+      }`}>
+        <div style={{fontFamily: '"Segoe UI", "SegoeUICustom", sans-serif'}}>
           {/* Project Header */}
-          <div className="p-6 bg-gray-50">
-            <h1 className="text-2xl font-light tracking-wide mb-3">{project.title}</h1>
-            <div className="text-sm text-gray-600 mb-4">
-              {project.metadata.location} • {project.metadata.year}
-            </div>
-            <p className="text-gray-700 leading-relaxed">
-              {project.detailedDescription || project.description}
-            </p>
+          <div className="p-6 bg-gray-50 mt-0">
+            <h1 className="text-2xl font-light tracking-wide">{project.title}</h1>
           </div>
-          
-          {/* Project Details */}
-          <div className="px-6">
-            <h3 className="text-lg font-light mb-4">Project Details</h3>
-            <div className="grid grid-cols-2 gap-6 text-sm">
-              <div>
-                <div className="font-medium text-black mb-1">Area</div>
-                <div className="text-gray-600">{project.metadata.area}</div>
-              </div>
-              <div>
-                <div className="font-medium text-black mb-1">Status</div>
-                <div className="text-gray-600">{project.metadata.status}</div>
-              </div>
-              {project.metadata.client && (
-                <div>
-                  <div className="font-medium text-black mb-1">Client</div>
-                  <div className="text-gray-600">{project.metadata.client}</div>
-                </div>
-              )}
-              {project.metadata.team && (
-                <div>
-                  <div className="font-medium text-black mb-1">Team</div>
-                  <div className="text-gray-600">{project.metadata.team}</div>
-                </div>
-              )}
-              {project.metadata.contractor && (
-                <div>
-                  <div className="font-medium text-black mb-1">Contractor</div>
-                  <div className="text-gray-600">{project.metadata.contractor}</div>
-                </div>
-              )}
-              {project.metadata.budget && (
-                <div>
-                  <div className="font-medium text-black mb-1">Budget</div>
-                  <div className="text-gray-600">{project.metadata.budget}</div>
-                </div>
-              )}
-            </div>
-          </div>
-          
-          {/* Key Features */}
-          {project.features && (
-            <div className="px-6">
-              <h3 className="text-lg font-light mb-4">Key Features</h3>
-              <div className="space-y-3">
-                {project.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-start space-x-3">
-                    <div className="w-1 h-1 bg-black rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-700 text-sm leading-relaxed">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
           
           {/* Gallery */}
-          <div className="space-y-1">
+          <div className="space-y-1 mb-8">
             {project.galleryImages.map((img, idx) => (
               <div key={idx} className="w-full">
                 <img
                   src={img}
                   alt={`${project.title} ${idx + 1}`}
-                  className="w-full h-auto object-cover"
+                  className="w-[95%] h-auto object-cover mx-auto mb-6"
                 />
               </div>
             ))}
           </div>
           
-          {/* Content at the End - Show Only Once */}
+          {/* Content Toggle */}
           {project.imageContents && project.imageContents[0] && (
             <div className="px-6">
-              <div className="p-6 bg-gray-50 rounded-lg">
-                {project.imageTitles && project.imageTitles[0] && (
-                  <h4 className="text-base font-medium mb-2">
-                    {project.imageTitles[0]}
-                  </h4>
-                )}
-                
-                {project.imageProgress && project.imageProgress[0] && (
-                  <div className="text-xs text-gray-600 mb-1">
-                    {project.imageProgress[0]}
+              <button
+                onClick={() => setShowMobileContent(!showMobileContent)}
+                className="w-full p-4 bg-white transition-colors flex items-center justify-between text-left"
+              >
+                <span className="text-base font-medium">Project Details</span>
+                <ChevronRight 
+                  size={20} 
+                  className={`transition-transform duration-200 ${
+                    showMobileContent ? 'rotate-90' : ''
+                  }`}
+                />
+              </button>
+              
+              <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                showMobileContent ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+              }`}>
+                <div className="p-6 bg-white">
+                  {project.imageTitles && project.imageTitles[0] && (
+                    <h4 className="text-base font-medium mb-2">
+                      {project.imageTitles[0]}
+                    </h4>
+                  )}
+                  
+                  {project.imageProgress && project.imageProgress[0] && (
+                    <div className="text-xs text-gray-600 mb-1">
+                      {project.imageProgress[0]}
+                    </div>
+                  )}
+                  
+                  {project.imageSubheadings && project.imageSubheadings[0] && (
+                    <div className="text-sm font-light text-gray-600 mb-3">
+                      {project.imageSubheadings[0]}
+                    </div>
+                  )}
+                  
+                  <div className="text-sm text-gray-700 leading-relaxed">
+                    <div dangerouslySetInnerHTML={{ __html: project.imageContents[0].replace(/\n/g, '<br />') }} />
                   </div>
-                )}
-                
-                {project.imageSubheadings && project.imageSubheadings[0] && (
-                  <div className="text-sm font-light text-gray-600 mb-3">
-                    {project.imageSubheadings[0]}
-                  </div>
-                )}
-                
-                <div className="text-sm text-gray-700 leading-relaxed">
-                  <div dangerouslySetInnerHTML={{ __html: project.imageContents[0].replace(/\n/g, '<br />') }} />
                 </div>
               </div>
             </div>
