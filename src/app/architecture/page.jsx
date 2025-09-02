@@ -1,12 +1,62 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Info, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Info, X, ChevronLeft, ChevronRight, Menu } from "lucide-react";
+
+function ArchitectureSidebar({ menuOpen, setMenuOpen }) {
+  useEffect(() => {
+    const handleScroll = () => {
+      if (menuOpen) {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [menuOpen, setMenuOpen]);
+
+  return (
+    <>
+      {/* Mobile Header */}
+      <div className="lg:hidden flex items-center justify-between p-4 bg-white/90 backdrop-blur-sm border-b border-gray-100/50 fixed top-0 left-0 right-0 z-50">
+        <a href="/" className="text-base font-thin tracking-wider whitespace-nowrap studio-title text-black" style={{fontWeight: '100'}}>STUDIO GRAVITAS</a>
+        <button 
+          onClick={() => setMenuOpen(!menuOpen)} 
+          aria-label="Toggle menu"
+          className="p-2 hover:bg-gray-50/50 rounded-md transition-colors z-50 text-black"
+        >
+          {menuOpen ? <X size={18} /> : <Menu size={18} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`lg:hidden bg-white/90 backdrop-blur-sm border-b border-gray-100/50 fixed top-16 left-0 right-0 z-40 transform ${
+          menuOpen ? "translate-y-0" : "-translate-y-full"
+        } transition-transform duration-300 ease-in-out`}
+      >
+        <nav className="p-6 space-y-3">
+          <a href="/architecture" className="block py-1 text-sm font-normal transition-colors text-black no-underline" onClick={() => setMenuOpen(false)}>Architecture</a>
+          <a href="/arts" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Arts</a>
+          <a href="/objects" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Objects</a>
+          <a href="/thoughts" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Thoughts</a>
+          <div className="mt-4 space-y-3">
+            <a href="/about" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>About</a>
+            <a href="/contact" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Contact</a>
+          </div>
+        </nav>
+      </div>
+
+
+    </>
+  );
+}
 export default function Architecture() {
   const [projects, setProjects] = useState([]);
   const [showFullscreen, setShowFullscreen] = useState(false);
   const [currentProject, setCurrentProject] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -100,7 +150,10 @@ export default function Architecture() {
 
   return (
     <>
-      <div className="min-h-screen bg-white p-4 lg:p-8 lg:ml-80 lg:pt-24">
+      <ArchitectureSidebar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <div className={`min-h-screen bg-white p-4 lg:p-8 lg:ml-80 lg:pt-24 pt-16 transition-all duration-300 ease-in-out ${
+        menuOpen ? 'mt-[220px] lg:mt-0' : 'mt-0'
+      }`}>
         <div className="max-w-full mx-auto">
           {projects.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

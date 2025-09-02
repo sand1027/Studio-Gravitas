@@ -1,30 +1,68 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 
-function MainSidebar() {
+function MainSidebar({ open, setOpen }) {
+
   return (
-    <aside className="w-64 fixed h-screen z-50 pointer-events-none">
-      <div className="pt-8 pb-3 pl-6 pointer-events-auto">
-        <a href="/" className="text-4xl font-thin tracking-wide text-white studio-title whitespace-nowrap hover:text-gray-300 transition-colors" style={{fontWeight: '100'}}>STUDIO GRAVITAS</a>
+    <>
+      {/* Mobile Header */}
+      <div className="lg:hidden flex items-center justify-between p-4 bg-white/90 backdrop-blur-sm border-b border-gray-100/50 fixed top-0 left-0 right-0 z-50">
+        <a href="/" className="text-base font-thin tracking-wider whitespace-nowrap studio-title text-black" style={{fontWeight: '100'}}>STUDIO GRAVITAS</a>
+        <button 
+          onClick={() => setOpen(!open)} 
+          aria-label="Toggle menu"
+          className="p-2 hover:bg-gray-50/50 rounded-md transition-colors z-50 text-black"
+        >
+          {open ? <X size={18} /> : <Menu size={18} />}
+        </button>
       </div>
-      
-      <nav className="overflow-hidden pointer-events-auto">
-        <a href="/architecture" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Architecture</a>
-        <a href="/arts" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Arts</a>
-        <a href="/objects" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Objects</a>
-        <a href="/thoughts" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Thoughts</a>
-        <div className="mt-6 space-y-0">
-          <a href="/about" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">About</a>
-          <a href="/contact" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Contact</a>
+
+      {/* Mobile Menu */}
+      <div
+        className={`lg:hidden bg-white/90 backdrop-blur-sm border-b border-gray-100/50 fixed top-16 left-0 right-0 z-40 transform ${
+          open ? "translate-y-0" : "-translate-y-full"
+        } transition-transform duration-300 ease-in-out`}
+      >
+        <nav className="p-6 space-y-3">
+          <a href="/architecture" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Architecture</a>
+          <a href="/arts" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Arts</a>
+          <a href="/objects" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Objects</a>
+          <a href="/thoughts" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Thoughts</a>
+          <div className="mt-4 space-y-3">
+            <a href="/about" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>About</a>
+            <a href="/contact" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Contact</a>
+          </div>
+        </nav>
+      </div>
+
+      {/* Desktop Sidebar */}
+      <aside className="hidden lg:block w-64 fixed h-screen z-50 pointer-events-none">
+        <div className="pt-8 pb-3 pl-6 pointer-events-auto">
+          <a href="/" className="text-4xl font-thin tracking-wide text-white studio-title whitespace-nowrap hover:text-gray-300 transition-colors" style={{fontWeight: '100'}}>STUDIO GRAVITAS</a>
         </div>
-      </nav>
-    </aside>
+        
+        <nav className="overflow-hidden pointer-events-auto">
+          <a href="/architecture" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Architecture</a>
+          <a href="/arts" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Arts</a>
+          <a href="/objects" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Objects</a>
+          <a href="/thoughts" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Thoughts</a>
+          <div className="mt-6 space-y-0">
+            <a href="/about" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">About</a>
+            <a href="/contact" className="block py-0 pl-6 text-base font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Contact</a>
+          </div>
+        </nav>
+      </aside>
+
+
+    </>
   );
 }
 
 export default function MainPage() {
   const [projects, setProjects] = useState([]);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -43,9 +81,11 @@ export default function MainPage() {
   const mainProject = projects.find(p => p.title.toLowerCase().includes('house of balance')) || projects[0];
 
   return (
-    <div className="min-h-screen bg-black relative">
-      <MainSidebar />
-      <div className="w-full h-screen">
+    <div className="min-h-screen bg-white lg:bg-black relative pt-16 lg:pt-0">
+      <MainSidebar open={open} setOpen={setOpen} />
+      <div className={`w-5/6 h-72 lg:w-full lg:h-screen mx-auto transition-all duration-300 ease-in-out lg:transition-none ${
+        open ? 'mt-[220px] lg:mt-0' : 'mt-24 lg:mt-0'
+      }`}>
         {mainProject ? (
           <a 
             href={`/projects/${mainProject.category}/${mainProject.subcategory}/${mainProject.slug}`}
