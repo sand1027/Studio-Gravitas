@@ -99,32 +99,32 @@ export default function ArtsPage() {
       <div 
         ref={containerRef}
         className={`w-full h-screen overflow-y-auto snap-y snap-mandatory transition-all duration-300 ease-in-out lg:transform-none ${
-        menuOpen ? 'mt-[220px] lg:mt-0' : 'mt-0'
+        menuOpen ? 'mt-[275px] lg:mt-0' : 'mt-0'
       }`}>
         {arts.length > 0 ? (
           arts.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).map((art) => (
-            <div key={art.id} className="w-full h-screen snap-start relative">
+            <div key={art.id} className="w-full h-auto lg:h-screen snap-start relative mb-6 lg:mb-0">
               <img
                 src={art.coverImage || 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80'}
                 alt={art.title}
-                className="w-full h-full object-cover"
+                className="w-[95%] mx-auto lg:w-full h-auto lg:h-full object-cover"
               />
             </div>
           ))
         ) : (
           <>
-            <div className="w-full h-screen snap-start relative">
+            <div className="w-full h-auto lg:h-screen snap-start relative mb-6 lg:mb-0">
               <img
                 src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
                 alt="Arts Demo 1"
-                className="w-full h-full object-cover"
+                className="w-[95%] mx-auto lg:w-full h-auto lg:h-full object-cover"
               />
             </div>
-            <div className="w-full h-screen snap-start relative">
+            <div className="w-full h-auto lg:h-screen snap-start relative mb-6 lg:mb-0">
               <img
                 src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
                 alt="Arts Demo 2"
-                className="w-full h-full object-cover"
+                className="w-[95%] mx-auto lg:w-full h-auto lg:h-full object-cover"
               />
             </div>
           </>
