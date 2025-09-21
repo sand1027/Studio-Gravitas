@@ -22,8 +22,8 @@ function ProjectSidebar({ open, setOpen }) {
     <>
       {/* Mobile Header */}
       <div className="lg:hidden flex items-center justify-between p-4 bg-white/90 backdrop-blur-sm border-b border-gray-100/50 fixed top-0 left-0 right-0 z-50">
-        <a href="/" className="block">
-          <img src="/studioGravitas-logo.svg" alt="Studio Gravitas" className="h-8" />
+        <a href="/" className="block text-3xl studio-title text-gray-800">
+          Studio Gravitas
         </a>
         <button 
           onClick={() => setOpen(!open)} 
@@ -40,14 +40,14 @@ function ProjectSidebar({ open, setOpen }) {
           open ? "translate-y-0" : "-translate-y-full"
         } transition-transform duration-300 ease-in-out`}
       >
-        <nav className="p-6 space-y-3">
-          <a href="/architecture" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Architecture</a>
-          <a href="/thoughts" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Thoughts</a>
-          <a href="/objects" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Objects</a>
-          <a href="/arts" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Arts</a>
-          <div className="mt-4 space-y-3">
-            <a href="/about" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>About</a>
-            <a href="/contact" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Contact</a>
+        <nav className="p-6 space-y-1">
+          <a href="/architecture" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Architecture</a>
+          <a href="/thoughts" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Thoughts</a>
+          <a href="/objects" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Objects</a>
+          <a href="/arts" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Arts</a>
+          <div className="mt-2 space-y-1">
+            <a href="/about" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>About</a>
+            <a href="/contact" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Contact</a>
           </div>
         </nav>
       </div>
@@ -55,8 +55,8 @@ function ProjectSidebar({ open, setOpen }) {
       {/* Desktop Sidebar */}
       <aside className="hidden lg:block w-64 fixed h-screen z-50 pointer-events-none">
         <div className="pt-8 pb-3 pl-6 pointer-events-auto">
-          <a href="/" className="block">
-            <img src="/studioGravitas-logo.svg" alt="Studio Gravitas" className="h-12 filter invert" />
+          <a href="/" className="block text-4xl studio-title text-white">
+            Studio Gravitas
           </a>
         </div>
         
@@ -258,14 +258,16 @@ export default function ProjectDetail({ params }) {
               
               {/* Individual image content with dynamic positioning - Only on first image */}
               {idx === 0 && project.imageContents && project.imageContents[idx] && (
-                <div className={`absolute z-10 text-white max-w-sm ${
+                <div className={`absolute z-10 text-white ${
+                  project.imageLayouts && (project.imageLayouts[idx] === 'right-3' || project.imageLayouts[idx] === 'right-4') ? 'max-w-xs' : 'max-w-sm'
+                } ${
                   project.imageLayouts && project.imageLayouts[idx] === 'right' ? 'bottom-8 right-6' :
                   project.imageLayouts && project.imageLayouts[idx] === 'left-2' ? 'bottom-16 left-6' :
-                  project.imageLayouts && project.imageLayouts[idx] === 'right-2' ? 'bottom-16 right-6' :
+                  project.imageLayouts && project.imageLayouts[idx] === 'right-2' ? 'bottom-16 right-14' :
                   project.imageLayouts && project.imageLayouts[idx] === 'left-3' ? 'bottom-24 left-6' :
-                  project.imageLayouts && project.imageLayouts[idx] === 'right-3' ? 'bottom-12 right-84' :
+                  project.imageLayouts && project.imageLayouts[idx] === 'right-3' ? 'bottom-12 right-[20rem]' :
                   project.imageLayouts && project.imageLayouts[idx] === 'left-4' ? 'bottom-32 left-6' :
-                  project.imageLayouts && project.imageLayouts[idx] === 'right-4' ? 'bottom-20 right-84' :
+                  project.imageLayouts && project.imageLayouts[idx] === 'right-4' ? 'bottom-32 right-[20rem]' :
                   'bottom-8 left-6'
                 }`} style={{fontFamily: '"Segoe UI", "SegoeUICustom", sans-serif'}}>
                   {/* Project Title */}
@@ -276,7 +278,7 @@ export default function ProjectDetail({ params }) {
                       </h3>
                       <button
                         onClick={() => setShowContent(prev => ({...prev, [idx]: !prev[idx]}))}
-                        className="hover:scale-110 transition-all duration-300 cursor-pointer p-1 mt-2"
+                        className="hover:scale-110 transition-all duration-500 cursor-pointer p-1 mt-2 hover:bg-gradient-to-r hover:from-white/20 hover:to-gray-200/30 hover:shadow-lg rounded-md"
                         aria-label="Click for project details"
                         title="Click for project details"
                         style={{fontSize: '12px'}}

@@ -23,8 +23,8 @@ function ThoughtsSidebar({ menuOpen, setMenuOpen, containerRef }) {
     <>
       {/* Mobile Header */}
       <div className="lg:hidden flex items-center justify-between p-4 bg-white/90 backdrop-blur-sm border-b border-gray-100/50 fixed top-0 left-0 right-0 z-50">
-        <a href="/" className="block">
-          <img src="/studioGravitas-logo.svg" alt="Studio Gravitas" className="h-8" />
+        <a href="/" className="block text-3xl studio-title text-gray-800">
+          Studio Gravitas
         </a>
         <button 
           onClick={() => setMenuOpen(!menuOpen)} 
@@ -41,14 +41,14 @@ function ThoughtsSidebar({ menuOpen, setMenuOpen, containerRef }) {
           menuOpen ? "translate-y-0" : "-translate-y-full"
         } transition-transform duration-300 ease-in-out`}
       >
-        <nav className="p-6 space-y-3">
-          <a href="/architecture" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Architecture</a>
-          <a href="/thoughts" className="block py-1 text-sm font-normal transition-colors text-gray-800 no-underline" onClick={() => setMenuOpen(false)}>Thoughts</a>
-          <a href="/objects" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Objects</a>
-          <a href="/arts" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Arts</a>
-          <div className="mt-4 space-y-3">
-            <a href="/about" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>About</a>
-            <a href="/contact" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Contact</a>
+        <nav className="p-6 space-y-1">
+          <a href="/architecture" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Architecture</a>
+          <a href="/thoughts" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 no-underline" onClick={() => setMenuOpen(false)}>Thoughts</a>
+          <a href="/objects" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Objects</a>
+          <a href="/arts" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Arts</a>
+          <div className="mt-2 space-y-1">
+            <a href="/about" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>About</a>
+            <a href="/contact" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Contact</a>
           </div>
         </nav>
       </div>
@@ -56,8 +56,8 @@ function ThoughtsSidebar({ menuOpen, setMenuOpen, containerRef }) {
       {/* Desktop Sidebar */}
       <aside className="w-64 fixed h-screen z-50 pointer-events-none hidden lg:block">
         <div className="pt-8 pb-3 pl-6 pointer-events-auto">
-          <a href="/" className="block">
-            <img src="/studioGravitas-logo.svg" alt="Studio Gravitas" className="h-12 filter invert" />
+          <a href="/" className="block text-4xl studio-title text-white">
+            Studio Gravitas
           </a>
         </div>
         

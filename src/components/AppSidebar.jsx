@@ -37,8 +37,8 @@ export default function AppSidebar({ open, setOpen }) {
     <>
       {/* Mobile Header */}
       <div className="lg:hidden flex items-center justify-between p-4 bg-white/90 backdrop-blur-sm border-b border-gray-100/50 fixed top-0 left-0 right-0 z-50" suppressHydrationWarning={true}>
-        <a href="/" className="block">
-          <img src="/studioGravitas-logo.svg" alt="Studio Gravitas" className="h-8" />
+        <a href="/" className="block text-3xl studio-title text-gray-800">
+          Studio Gravitas
         </a>
         <button 
           onClick={() => setIsOpen(!isOpen)} 
@@ -56,13 +56,13 @@ export default function AppSidebar({ open, setOpen }) {
         } transition-transform duration-300 ease-in-out`}
         suppressHydrationWarning={true}
       >
-        <nav className="p-6 space-y-3">
+        <nav className="p-6 space-y-1">
           {links.filter(link => !link.hideOnMobile).map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className={`block py-1 text-sm font-light text-gray-800 hover:text-gray-600 transition-colors cursor-pointer ${
-                link.spaceBefore ? 'mt-3' : ''
+              className={`block py-0.5 text-sm font-light text-gray-800 hover:text-gray-600 transition-colors cursor-pointer ${
+                link.spaceBefore ? 'mt-2' : ''
               }`}
               style={{ pointerEvents: 'auto' }}
               onClick={() => setIsOpen(false)}
@@ -76,8 +76,8 @@ export default function AppSidebar({ open, setOpen }) {
       {/* Desktop Sidebar */}
       <aside className="hidden lg:block bg-white/80 backdrop-blur-sm w-80 fixed h-screen overflow-hidden z-50">
         <div className="pt-8 pb-6 px-6">
-          <a href="/" className="block">
-            <img src="/studioGravitas-logo.svg" alt="Studio Gravitas" className="h-12" />
+          <a href="/" className="block text-4xl studio-title text-gray-800">
+            Studio Gravitas
           </a>
         </div>
         
