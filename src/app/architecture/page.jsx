@@ -19,7 +19,9 @@ function ArchitectureSidebar({ menuOpen, setMenuOpen }) {
     <>
       {/* Mobile Header */}
       <div className="lg:hidden flex items-center justify-between p-4 bg-white/90 backdrop-blur-sm border-b border-gray-100/50 fixed top-0 left-0 right-0 z-50">
-        <a href="/" className="font-thin tracking-wider whitespace-nowrap studio-title text-black" style={{fontWeight: '100', fontSize: '16px'}}>STUDIO GRAVITAS</a>
+        <a href="/" className="block">
+          <img src="/studioGravitas-logo.svg" alt="Studio Gravitas" className="h-8" />
+        </a>
         <button 
           onClick={() => setMenuOpen(!menuOpen)} 
           aria-label="Toggle menu"
@@ -36,13 +38,13 @@ function ArchitectureSidebar({ menuOpen, setMenuOpen }) {
         } transition-transform duration-300 ease-in-out`}
       >
         <nav className="p-6 space-y-3">
-          <a href="/architecture" className="block py-1 text-sm font-normal transition-colors text-black no-underline" onClick={() => setMenuOpen(false)}>Architecture</a>
-          <a href="/arts" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Arts</a>
-          <a href="/objects" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Objects</a>
-          <a href="/thoughts" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Thoughts</a>
+          <a href="/architecture" className="block py-1 text-sm font-normal transition-colors text-gray-800 no-underline" onClick={() => setMenuOpen(false)}>Architecture</a>
+          <a href="/thoughts" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Thoughts</a>
+          <a href="/objects" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Objects</a>
+          <a href="/arts" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Arts</a>
           <div className="mt-4 space-y-3">
-            <a href="/about" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>About</a>
-            <a href="/contact" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Contact</a>
+            <a href="/about" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>About</a>
+            <a href="/contact" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Contact</a>
           </div>
         </nav>
       </div>
@@ -62,7 +64,7 @@ export default function Architecture() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch('/api/projects');
+        const res = await fetch('/api/projects?' + Date.now());
         const data = await res.json();
         // Show all projects (architecture, thoughts, arts, objects)
         setProjects(data.projects || []);
@@ -173,7 +175,7 @@ export default function Architecture() {
                   />
                 </div>
                 <div className="p-2">
-                  <h3 className="text-sm font-light tracking-wide text-black uppercase">{project.title}</h3>
+                  <h3 className="text-sm font-light tracking-wide text-gray-800 whitespace-nowrap overflow-hidden text-ellipsis">{project.cardTitle || 'NA'}</h3>
                 </div>
               </div>
             ))}
@@ -230,16 +232,17 @@ export default function Architecture() {
             <div className="absolute top-0 left-0 w-64 h-full z-50">
               <aside className="w-64 h-full overflow-hidden">
                 <div className="pt-8 pb-6 px-6">
-                  <a href="/" className="text-4xl font-thin tracking-wide text-white studio-title whitespace-nowrap hover:text-gray-300 transition-colors" style={{fontWeight: '100 !important', fontFamily: 'Montserrat, sans-serif !important'}}>STUDIO GRAVITAS</a>
+                  <a href="/" className="block">
+                    <img src="/studioGravitas-logo.svg" alt="Studio Gravitas" className="h-12 filter invert" />
+                  </a>
                 </div>
                 
                 <nav className="overflow-hidden">
-                  <a href="/" className="block py-2 px-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Home</a>
                   <a href="/architecture" className="block py-2 px-6 text-xs font-normal transition-colors text-white opacity-100 no-underline">Architecture</a>
-                  <a href="/art" className="block py-2 px-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Art</a>
-                  <a href="/objects" className="block py-2 px-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Objects</a>
                   <a href="/thoughts" className="block py-2 px-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Thoughts</a>
-                  <a href="/about" className="block py-2 px-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">About us</a>
+                  <a href="/objects" className="block py-2 px-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Objects</a>
+                  <a href="/arts" className="block py-2 px-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Arts</a>
+                  <a href="/about" className="block py-2 px-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">About</a>
                   <a href="/contact" className="block py-2 px-6 text-xs font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Contact</a>
                 </nav>
                 

@@ -21,7 +21,7 @@ export default function About() {
             </p>
             
             <div className="pt-8">
-              <h2 className="text-xl font-light text-black mb-4">Contact Information</h2>
+              <h2 className="text-xl font-light text-gray-800 mb-4">Contact Information</h2>
               <div className="space-y-2 text-sm font-light">
                 <p>Email: info@studiogravitas.com</p>
                 <p>Location: India</p>

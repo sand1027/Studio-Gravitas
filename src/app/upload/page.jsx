@@ -150,7 +150,7 @@ function SimpleUpload({ type, onBack }) {
             >
               ← Back
             </button>
-            <h1 className="text-2xl lg:text-3xl font-light tracking-wide text-black">
+            <h1 className="text-2xl lg:text-3xl font-light tracking-wide text-gray-800">
               Upload {type.charAt(0).toUpperCase() + type.slice(1)}
             </h1>
           </div>
@@ -160,12 +160,12 @@ function SimpleUpload({ type, onBack }) {
         <div className="bg-gray-50 p-8">
           <form onSubmit={handleSubmit} className="space-y-8">
             <div>
-              <label className="block text-lg font-light text-black mb-6">Images</label>
+              <label className="block text-lg font-light text-gray-800 mb-6">Images</label>
               <div className="space-y-6">
                 {images.map((img, index) => (
                   <div key={index} className="bg-white p-6 border border-gray-200">
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-sm font-medium text-black">Image {index + 1}</span>
+                      <span className="text-sm font-medium text-gray-800">Image {index + 1}</span>
                       {images.length > 1 && (
                         <button
                           type="button"
@@ -211,7 +211,7 @@ function SimpleUpload({ type, onBack }) {
             <button
               type="submit"
               disabled={loading || !images[0]}
-              className="w-full bg-black text-white p-4 rounded-md hover:bg-gray-800 disabled:opacity-50 font-light text-lg transition-colors"
+              className="w-full bg-gray-800 text-white p-4 rounded-md hover:bg-gray-700 disabled:opacity-50 font-light text-lg transition-colors"
             >
               {loading ? 'Uploading...' : `Upload ${type.charAt(0).toUpperCase() + type.slice(1)}`}
             </button>
@@ -245,6 +245,7 @@ export default function Upload() {
           if (existingProject) {
             setFormData({
               title: existingProject.title,
+              cardTitle: existingProject.cardTitle || '',
               category: existingProject.category,
               subcategory: existingProject.subcategory,
               description: existingProject.description,
@@ -280,6 +281,7 @@ export default function Upload() {
 
   const [formData, setFormData] = useState({
     title: "",
+    cardTitle: "",
     category: "architecture",
     subcategory: "",
     description: "",
@@ -486,7 +488,7 @@ export default function Upload() {
       <div className="min-h-screen bg-white">
         <div className="max-w-4xl mx-auto px-8 py-16">
           <div className="space-y-4 mb-16 text-center">
-            <h1 className="text-2xl lg:text-3xl font-light tracking-wide text-black">Upload Content</h1>
+            <h1 className="text-2xl lg:text-3xl font-light tracking-wide text-gray-800">Upload Content</h1>
             <div className="w-16 h-px bg-black mx-auto"></div>
             <p className="text-gray-600 mt-6">Choose the type of content you'd like to upload</p>
           </div>
@@ -501,7 +503,7 @@ export default function Upload() {
                   <span className="text-gray-600 group-hover:text-white text-xl">🏗️</span>
                 </div>
               </div>
-              <h3 className="text-lg font-light text-black mb-3">Projects</h3>
+              <h3 className="text-lg font-light text-gray-800 mb-3">Projects</h3>
               <p className="text-gray-600 text-sm leading-relaxed">Upload architecture and interior projects with comprehensive details, metadata, and project information</p>
             </button>
             
@@ -514,7 +516,7 @@ export default function Upload() {
                   <span className="text-gray-600 group-hover:text-white text-xl">💭</span>
                 </div>
               </div>
-              <h3 className="text-lg font-light text-black mb-3">Thoughts</h3>
+              <h3 className="text-lg font-light text-gray-800 mb-3">Thoughts</h3>
               <p className="text-gray-600 text-sm leading-relaxed">Share visual thoughts and reflections through curated image collections</p>
             </button>
             
@@ -527,7 +529,7 @@ export default function Upload() {
                   <span className="text-gray-600 group-hover:text-white text-xl">🎨</span>
                 </div>
               </div>
-              <h3 className="text-lg font-light text-black mb-3">Art</h3>
+              <h3 className="text-lg font-light text-gray-800 mb-3">Art</h3>
               <p className="text-gray-600 text-sm leading-relaxed">Showcase artistic works and creative expressions</p>
             </button>
             
@@ -540,7 +542,7 @@ export default function Upload() {
                   <span className="text-gray-600 group-hover:text-white text-xl">🏺</span>
                 </div>
               </div>
-              <h3 className="text-lg font-light text-black mb-3">Objects</h3>
+              <h3 className="text-lg font-light text-gray-800 mb-3">Objects</h3>
               <p className="text-gray-600 text-sm leading-relaxed">Display design objects, furniture, and material studies</p>
             </button>
           </div>
@@ -568,6 +570,16 @@ export default function Upload() {
               type="text"
               name="title"
               value={formData.title}
+              onChange={handleInputChange}
+              className="w-full p-3 border border-gray-300 rounded-md"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-2">Card Title</label>
+            <input
+              type="text"
+              name="cardTitle"
+              value={formData.cardTitle}
               onChange={handleInputChange}
               className="w-full p-3 border border-gray-300 rounded-md"
             />

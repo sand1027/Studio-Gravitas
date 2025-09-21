@@ -22,7 +22,9 @@ function ProjectSidebar({ open, setOpen }) {
     <>
       {/* Mobile Header */}
       <div className="lg:hidden flex items-center justify-between p-4 bg-white/90 backdrop-blur-sm border-b border-gray-100/50 fixed top-0 left-0 right-0 z-50">
-        <a href="/" className="font-thin tracking-wider whitespace-nowrap studio-title text-black" style={{fontWeight: '100', fontSize: '16px'}}>STUDIO GRAVITAS</a>
+        <a href="/" className="block">
+          <img src="/studioGravitas-logo.svg" alt="Studio Gravitas" className="h-8" />
+        </a>
         <button 
           onClick={() => setOpen(!open)} 
           aria-label="Toggle menu"
@@ -39,13 +41,13 @@ function ProjectSidebar({ open, setOpen }) {
         } transition-transform duration-300 ease-in-out`}
       >
         <nav className="p-6 space-y-3">
-          <a href="/architecture" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Architecture</a>
-          <a href="/arts" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Arts</a>
-          <a href="/objects" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Objects</a>
-          <a href="/thoughts" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Thoughts</a>
+          <a href="/architecture" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Architecture</a>
+          <a href="/thoughts" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Thoughts</a>
+          <a href="/objects" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Objects</a>
+          <a href="/arts" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Arts</a>
           <div className="mt-4 space-y-3">
-            <a href="/about" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>About</a>
-            <a href="/contact" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Contact</a>
+            <a href="/about" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>About</a>
+            <a href="/contact" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Contact</a>
           </div>
         </nav>
       </div>
@@ -53,14 +55,16 @@ function ProjectSidebar({ open, setOpen }) {
       {/* Desktop Sidebar */}
       <aside className="hidden lg:block w-64 fixed h-screen z-50 pointer-events-none">
         <div className="pt-8 pb-3 pl-6 pointer-events-auto">
-          <a href="/" className="text-3xl font-thin tracking-wide text-white studio-title whitespace-nowrap hover:text-gray-300 transition-colors" style={{fontWeight: '100 !important', fontFamily: 'Montserrat, sans-serif !important'}}>STUDIO GRAVITAS</a>
+          <a href="/" className="block">
+            <img src="/studioGravitas-logo.svg" alt="Studio Gravitas" className="h-12 filter invert" />
+          </a>
         </div>
         
         <nav className="overflow-hidden pointer-events-auto">
           <a href="/architecture" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Architecture</a>
-          <a href="/arts" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Arts</a>
-          <a href="/objects" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Objects</a>
           <a href="/thoughts" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Thoughts</a>
+          <a href="/objects" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Objects</a>
+          <a href="/arts" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Arts</a>
           <div className="mt-4 space-y-0">
             <a href="/about" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">About</a>
             <a href="/contact" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Contact</a>
@@ -259,9 +263,9 @@ export default function ProjectDetail({ params }) {
                   project.imageLayouts && project.imageLayouts[idx] === 'left-2' ? 'bottom-16 left-6' :
                   project.imageLayouts && project.imageLayouts[idx] === 'right-2' ? 'bottom-16 right-6' :
                   project.imageLayouts && project.imageLayouts[idx] === 'left-3' ? 'bottom-24 left-6' :
-                  project.imageLayouts && project.imageLayouts[idx] === 'right-3' ? 'bottom-12 right-68' :
+                  project.imageLayouts && project.imageLayouts[idx] === 'right-3' ? 'bottom-12 right-84' :
                   project.imageLayouts && project.imageLayouts[idx] === 'left-4' ? 'bottom-32 left-6' :
-                  project.imageLayouts && project.imageLayouts[idx] === 'right-4' ? 'bottom-20 right-68' :
+                  project.imageLayouts && project.imageLayouts[idx] === 'right-4' ? 'bottom-20 right-84' :
                   'bottom-8 left-6'
                 }`} style={{fontFamily: '"Segoe UI", "SegoeUICustom", sans-serif'}}>
                   {/* Project Title */}
@@ -272,16 +276,17 @@ export default function ProjectDetail({ params }) {
                       </h3>
                       <button
                         onClick={() => setShowContent(prev => ({...prev, [idx]: !prev[idx]}))}
-                        className="text-white hover:text-gray-300 transition-all duration-300 cursor-pointer p-1 mt-2 animate-pulse hover:animate-none"
+                        className="hover:scale-110 transition-all duration-300 cursor-pointer p-1 mt-2"
                         aria-label="Click for project details"
                         title="Click for project details"
+                        style={{fontSize: '12px'}}
                       >
                         {showContent[idx] ? 
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
                             <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
                             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
                           </svg> : 
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
                             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
                             <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
                           </svg>
