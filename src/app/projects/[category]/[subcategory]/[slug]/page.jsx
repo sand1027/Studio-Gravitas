@@ -55,7 +55,7 @@ function ProjectSidebar({ open, setOpen }) {
       {/* Desktop Sidebar */}
       <aside className="hidden lg:block w-64 fixed h-screen z-50 pointer-events-none">
         <div className="pt-8 pb-3 pl-6 pointer-events-auto">
-          <a href="/" className="block text-4xl studio-title text-white">
+          <a href="/" className="block text-4xl studio-title text-gray-300">
             Studio Gravitas
           </a>
         </div>
@@ -269,13 +269,13 @@ export default function ProjectDetail({ params }) {
                   project.imageLayouts && project.imageLayouts[idx] === 'left-4' ? 'bottom-32 left-6' :
                   project.imageLayouts && project.imageLayouts[idx] === 'right-4' ? 'bottom-32 right-[20rem]' :
                   'bottom-8 left-6'
-                }`} style={{fontFamily: '"Segoe UI", "SegoeUICustom", sans-serif'}}>
+}`}>
                   {/* Project Title */}
                   {project.imageTitles && project.imageTitles[idx] && (
                     <div className="mb-2 flex items-end space-x-1" title="Click for project details">
-                      <h3 className="text-3xl font-semibold leading-none" style={{fontFamily: 'Montserrat, sans-serif'}}>
+                      <h1 className="text-3xl font-semibold leading-none">
                         {project.imageTitles[idx]}
-                      </h3>
+                      </h1>
                       <button
                         onClick={() => setShowContent(prev => ({...prev, [idx]: !prev[idx]}))}
                         className="hover:scale-110 transition-all duration-500 cursor-pointer p-1 mt-2 hover:bg-gradient-to-r hover:from-white/20 hover:to-gray-200/30 hover:shadow-lg rounded-md"
@@ -329,13 +329,12 @@ export default function ProjectDetail({ params }) {
         
 
         
-        {currentImageIndex === project.galleryImages.length - 1 && (
+        {currentImageIndex === 0 && (
           <button
             onClick={handleEditClick}
-            className="hidden xl:flex fixed bottom-8 left-8 z-20 text-white px-3 py-2 text-xs font-light tracking-wide hover:text-gray-300 transition-all items-center space-x-1 cursor-pointer"
+            className="hidden xl:flex fixed top-8 right-8 z-20 text-white px-2 py-1 text-xs font-light tracking-wide hover:text-gray-300 transition-all items-center space-x-1 cursor-pointer"
           >
-            <Edit size={14} />
-            <span>EDIT</span>
+            <Edit size={12} />
           </button>
         )}
         
@@ -355,7 +354,7 @@ export default function ProjectDetail({ params }) {
       <div className={`lg:hidden min-h-screen bg-white transition-all duration-300 ease-in-out ${
         open ? 'mt-[260px] lg:mt-0' : 'mt-0'
       }`}>
-        <div style={{fontFamily: '"Segoe UI", "SegoeUICustom", sans-serif'}}>
+        <div>
           {/* Project Header */}
           <div className="p-6 bg-gray-50 mt-0">
             <h1 className="text-2xl font-light tracking-wide">{project.title}</h1>
@@ -424,7 +423,7 @@ export default function ProjectDetail({ params }) {
 
       {showDetails && (
         <div className="fixed inset-0 bg-transparent z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg max-w-2xl w-full p-8 text-black shadow-2xl max-h-[80vh] overflow-y-auto" style={{fontFamily: '"Segoe UI", "SegoeUICustom", sans-serif'}}>
+          <div className="bg-white rounded-lg max-w-2xl w-full p-8 text-black shadow-2xl max-h-[80vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-light text-black">{project.title}</h2>
               <button
