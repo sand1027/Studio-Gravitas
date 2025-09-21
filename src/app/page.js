@@ -9,8 +9,8 @@ function MainSidebar({ open, setOpen }) {
     <>
       {/* Mobile Header */}
       <div className="lg:hidden flex items-center justify-between p-4 bg-white/90 backdrop-blur-sm border-b border-gray-100/50 fixed top-0 left-0 right-0 z-50">
-        <a href="/" className="block">
-          <img src="/studioGravitas-logo.svg" alt="Studio Gravitas" className="h-8" />
+        <a href="/" className="block text-3xl studio-title text-gray-800">
+          Studio Gravitas
         </a>
         <button 
           onClick={() => setOpen(!open)} 
@@ -27,14 +27,14 @@ function MainSidebar({ open, setOpen }) {
           open ? "translate-y-0" : "-translate-y-full"
         } transition-transform duration-300 ease-in-out`}
       >
-        <nav className="p-6 space-y-3">
-          <a href="/architecture" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Architecture</a>
-          <a href="/thoughts" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Thoughts</a>
-          <a href="/objects" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Objects</a>
-          <a href="/arts" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Arts</a>
-          <div className="mt-4 space-y-3">
-            <a href="/about" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>About</a>
-            <a href="/contact" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Contact</a>
+        <nav className="p-6 space-y-1">
+          <a href="/architecture" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Architecture</a>
+          <a href="/thoughts" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Thoughts</a>
+          <a href="/objects" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Objects</a>
+          <a href="/arts" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Arts</a>
+          <div className="mt-2 space-y-1">
+            <a href="/about" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>About</a>
+            <a href="/contact" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Contact</a>
           </div>
         </nav>
       </div>
@@ -42,8 +42,8 @@ function MainSidebar({ open, setOpen }) {
       {/* Desktop Sidebar */}
       <aside className="hidden lg:block w-64 fixed h-screen z-50 pointer-events-none">
         <div className="pt-8 pb-3 pl-6 pointer-events-auto">
-          <a href="/" className="block">
-            <img src="/studioGravitas-logo.svg" alt="Studio Gravitas" className="h-12 filter invert" />
+          <a href="/" className="block text-4xl studio-title text-white">
+            Studio Gravitas
           </a>
         </div>
         
@@ -87,8 +87,8 @@ export default function MainPage() {
   return (
     <div className="min-h-screen bg-white relative pt-16 lg:pt-0">
       <MainSidebar open={open} setOpen={setOpen} />
-      <div className={`w-5/6 h-72 lg:w-full lg:h-screen mx-auto transition-all duration-300 ease-in-out lg:transition-none ${
-        open ? 'mt-[280px] lg:mt-0' : 'mt-24 lg:mt-0'
+      <div className={`w-full h-screen mx-auto transition-all duration-300 ease-in-out lg:transition-none ${
+        open ? 'mt-[180px] lg:mt-0' : 'mt-0 lg:mt-0'
       }`}>
         {mainProject ? (
           <a 

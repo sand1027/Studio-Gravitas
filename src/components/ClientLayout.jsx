@@ -14,10 +14,11 @@ export default function ClientLayout({ children }) {
   const isThoughtsPage = pathname === '/thoughts';
   const isArtsPage = pathname === '/arts';
   const isObjectsPage = pathname === '/objects';
+  const isAboutPage = pathname === '/about';
   const isProjectPage = pathname?.startsWith('/projects/');
   
   // Pages that have their own custom navigation
-  if (isRootPage || isLandingPage || isThoughtsPage || isArtsPage || isObjectsPage || isProjectPage) {
+  if (isRootPage || isLandingPage || isThoughtsPage || isArtsPage || isObjectsPage || isAboutPage || isProjectPage) {
     return (
       <div className="w-full">
         {children}

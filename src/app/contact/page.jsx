@@ -44,7 +44,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-white lg:ml-80">
-      <div className="max-w-6xl mx-auto px-8 py-16 content-text">
+      <div className="max-w-6xl mx-auto px-8 pt-4 pb-16 lg:pt-20 lg:pb-16 content-text">
 
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">

@@ -19,8 +19,8 @@ function ArchitectureSidebar({ menuOpen, setMenuOpen }) {
     <>
       {/* Mobile Header */}
       <div className="lg:hidden flex items-center justify-between p-4 bg-white/90 backdrop-blur-sm border-b border-gray-100/50 fixed top-0 left-0 right-0 z-50">
-        <a href="/" className="block">
-          <img src="/studioGravitas-logo.svg" alt="Studio Gravitas" className="h-8" />
+        <a href="/" className="block text-3xl studio-title text-gray-800">
+          Studio Gravitas
         </a>
         <button 
           onClick={() => setMenuOpen(!menuOpen)} 
@@ -37,14 +37,14 @@ function ArchitectureSidebar({ menuOpen, setMenuOpen }) {
           menuOpen ? "translate-y-0" : "-translate-y-full"
         } transition-transform duration-300 ease-in-out`}
       >
-        <nav className="p-6 space-y-3">
-          <a href="/architecture" className="block py-1 text-sm font-normal transition-colors text-gray-800 no-underline" onClick={() => setMenuOpen(false)}>Architecture</a>
-          <a href="/thoughts" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Thoughts</a>
-          <a href="/objects" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Objects</a>
-          <a href="/arts" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Arts</a>
-          <div className="mt-4 space-y-3">
-            <a href="/about" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>About</a>
-            <a href="/contact" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Contact</a>
+        <nav className="p-6 space-y-1">
+          <a href="/architecture" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 no-underline" onClick={() => setMenuOpen(false)}>Architecture</a>
+          <a href="/thoughts" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Thoughts</a>
+          <a href="/objects" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Objects</a>
+          <a href="/arts" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Arts</a>
+          <div className="mt-2 space-y-1">
+            <a href="/about" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>About</a>
+            <a href="/contact" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Contact</a>
           </div>
         </nav>
       </div>
@@ -153,8 +153,8 @@ export default function Architecture() {
   return (
     <>
       <ArchitectureSidebar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <div className={`min-h-screen bg-white p-4 lg:p-8 lg:ml-80 lg:pt-24 pt-16 transition-all duration-300 ease-in-out ${
-        menuOpen ? 'mt-[220px] lg:mt-0' : 'mt-0'
+      <div className={`min-h-screen bg-white px-4 pb-4 pt-2 lg:p-8 lg:ml-80 lg:pt-24 transition-all duration-300 ease-in-out ${
+        menuOpen ? 'mt-[180px] lg:mt-0' : 'mt-0'
       }`}>
         <div className="max-w-full mx-auto">
           {projects.length > 0 ? (
