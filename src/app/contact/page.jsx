@@ -7,6 +7,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     message: "",
   });
   const [status, setStatus] = useState("");
@@ -29,7 +30,7 @@ export default function Contact() {
       
       if (res.ok) {
         toast.success('Message sent successfully!', { id: 'email-send' });
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", phone: "", message: "" });
         setStatus("");
       } else {
         toast.error('Failed to send message. Please try again.', { id: 'email-send' });
@@ -48,88 +49,62 @@ export default function Contact() {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="space-y-12">
-            <div>
-              <h2 className="text-lg font-light text-black mb-6">Get in Touch</h2>
+            <div className="max-w-xs">
+              <h1 className="text-2xl font-light text-gray-800 mb-6">Get in Touch</h1>
               <p className="text-gray-600 leading-relaxed mb-8 font-light">
                 We welcome collaborations, inquiries, and conversations about architecture, design, and the spaces we inhabit. Reach out to discuss your project or simply to connect.
               </p>
+              <p className="text-gray-600 font-light">
+                For career enquiry, send your portfolios to <a href="mailto:mail@studiogravitas.com" className="font-bold text-gray-800 hover:text-gray-600">mail@studiogravitas.com</a>
+              </p>
             </div>
             
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-base font-light text-black mb-4">General Enquiries</h3>
-                <p className="text-gray-600 font-light">mail@studiogravitas.com</p>
-              </div>
-              
-              <div>
-                <h3 className="text-base font-light text-black mb-4">India Office</h3>
-                <div className="text-gray-600 space-y-1 font-light">
-                  <p>Studio Gravitas</p>
-                  <p>New Delhi, India</p>
-                  <p>T +91 11 1234 5678</p>
-                  <p>india@studiogravitas.com</p>
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="text-base font-light text-black mb-4">International Projects</h3>
-                <p className="text-gray-600 font-light">international@studiogravitas.com</p>
-              </div>
-            </div>
           </div>
           
-          <div className="bg-gray-50 p-8">
-            <h3 className="text-lg font-light text-black mb-6">Send us a Message</h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-light text-black mb-2">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
-                  required
-                />
-              </div>
+          <div className="max-w-80">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input
+                name="name"
+                type="text"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Name"
+                className="w-full p-3 border border-gray-300 focus:outline-none focus:border-gray-800"
+                required
+              />
               
-              <div>
-                <label htmlFor="email" className="block text-sm font-light text-black mb-2">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
-                  required
-                />
-              </div>
+              <input
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email"
+                className="w-full p-3 border border-gray-300 focus:outline-none focus:border-gray-800"
+                required
+              />
               
-              <div>
-                <label htmlFor="message" className="block text-sm font-light text-black mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="6"
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black resize-none"
-                  required
-                />
-              </div>
+              <input
+                name="phone"
+                type="tel"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Phone"
+                className="w-full p-3 border border-gray-300 focus:outline-none focus:border-gray-800"
+              />
+              
+              <textarea
+                name="message"
+                rows="12"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Message"
+                className="w-full p-3 border border-gray-300 focus:outline-none focus:border-gray-800 resize-none"
+                required
+              />
               
               <button
                 type="submit"
-                className="w-full bg-black text-white p-3 rounded-md hover:bg-gray-800 transition-colors font-light"
+                className="w-full bg-gray-800 text-white p-3 hover:bg-gray-700 transition-colors font-light"
               >
                 Send Message
               </button>

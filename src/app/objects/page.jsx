@@ -22,7 +22,9 @@ function ObjectsSidebar({ menuOpen, setMenuOpen, containerRef }) {
     <>
       {/* Mobile Header */}
       <div className="lg:hidden flex items-center justify-between p-4 bg-white/90 backdrop-blur-sm border-b border-gray-100/50 fixed top-0 left-0 right-0 z-50">
-        <a href="/" className="font-thin tracking-wider whitespace-nowrap studio-title text-black" style={{fontWeight: '100', fontSize: '16px'}}>STUDIO GRAVITAS</a>
+        <a href="/" className="block">
+          <img src="/studioGravitas-logo.svg" alt="Studio Gravitas" className="h-8" />
+        </a>
         <button 
           onClick={() => setMenuOpen(!menuOpen)} 
           aria-label="Toggle menu"
@@ -39,13 +41,13 @@ function ObjectsSidebar({ menuOpen, setMenuOpen, containerRef }) {
         } transition-transform duration-300 ease-in-out`}
       >
         <nav className="p-6 space-y-3">
-          <a href="/architecture" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Architecture</a>
-          <a href="/arts" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Arts</a>
-          <a href="/objects" className="block py-1 text-sm font-normal transition-colors text-black no-underline" onClick={() => setMenuOpen(false)}>Objects</a>
-          <a href="/thoughts" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Thoughts</a>
+          <a href="/architecture" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Architecture</a>
+          <a href="/thoughts" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Thoughts</a>
+          <a href="/objects" className="block py-1 text-sm font-normal transition-colors text-gray-800 no-underline" onClick={() => setMenuOpen(false)}>Objects</a>
+          <a href="/arts" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Arts</a>
           <div className="mt-4 space-y-3">
-            <a href="/about" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>About</a>
-            <a href="/contact" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Contact</a>
+            <a href="/about" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>About</a>
+            <a href="/contact" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setMenuOpen(false)}>Contact</a>
           </div>
         </nav>
       </div>
@@ -53,17 +55,19 @@ function ObjectsSidebar({ menuOpen, setMenuOpen, containerRef }) {
       {/* Desktop Sidebar */}
       <aside className="hidden lg:block w-64 fixed h-screen z-50 pointer-events-none">
         <div className="pt-8 pb-3 pl-6 pointer-events-auto">
-          <a href="/" className="text-3xl font-thin tracking-wide text-white studio-title whitespace-nowrap hover:text-gray-300 transition-colors" style={{fontWeight: '100'}}>STUDIO GRAVITAS</a>
+          <a href="/" className="block">
+            <img src="/studioGravitas-logo.svg" alt="Studio Gravitas" className="h-12" />
+          </a>
         </div>
         
         <nav className="overflow-hidden pointer-events-auto">
-          <a href="/architecture" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Architecture</a>
-          <a href="/arts" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Arts</a>
-          <a href="/objects" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-100 no-underline">Objects</a>
-          <a href="/thoughts" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Thoughts</a>
-          <div className="mt-6 space-y-0">
-            <a href="/about" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">About</a>
-            <a href="/contact" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Contact</a>
+          <a href="/architecture" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-800 opacity-60 hover:opacity-100 no-underline">Architecture</a>
+          <a href="/thoughts" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-800 opacity-60 hover:opacity-100 no-underline">Thoughts</a>
+          <a href="/objects" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-800 opacity-100 no-underline">Objects</a>
+          <a href="/arts" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-800 opacity-60 hover:opacity-100 no-underline">Arts</a>
+          <div className="mt-4 space-y-0">
+            <a href="/about" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-800 opacity-60 hover:opacity-100 no-underline">About</a>
+            <a href="/contact" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-800 opacity-60 hover:opacity-100 no-underline">Contact</a>
           </div>
         </nav>
       </aside>
@@ -98,44 +102,12 @@ export default function ObjectsPage() {
       <ObjectsSidebar menuOpen={menuOpen} setMenuOpen={setMenuOpen} containerRef={containerRef} />
       <div 
         ref={containerRef}
-        className={`w-full h-screen overflow-y-auto snap-y snap-mandatory transition-all duration-300 ease-in-out lg:transform-none ${
+        className={`w-full h-screen overflow-y-auto snap-y snap-mandatory transition-all duration-300 ease-in-out lg:transform-none flex items-center justify-center ${
         menuOpen ? 'mt-[275px] lg:mt-0' : 'mt-0'
       }`}>
-        {objectProjects.length > 0 ? (
-          objectProjects.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).map((object) => (
-            <div key={object.id} className="w-full h-auto lg:h-screen snap-start relative mb-6 lg:mb-0">
-              <img
-                src={object.coverImage || 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80'}
-                alt={object.title}
-                className="w-[95%] mx-auto lg:w-full h-auto lg:h-full object-cover"
-              />
-            </div>
-          ))
-        ) : (
-          <>
-            <div className="w-full h-auto lg:h-screen snap-start relative mb-6 lg:mb-0">
-              <img
-                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
-                alt="Objects Demo 1"
-                className="w-[95%] mx-auto lg:w-full h-auto lg:h-full object-cover"
-              />
-            </div>
-            <div className="w-full h-auto lg:h-screen snap-start relative mb-6 lg:mb-0">
-              <img
-                src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
-                alt="Objects Demo 2"
-                className="w-[95%] mx-auto lg:w-full h-auto lg:h-full object-cover"
-              />
-            </div>
-            <div className="w-full h-auto lg:h-screen snap-start relative mb-6 lg:mb-0">
-              <img
-                src="https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
-                alt="Objects Demo 3"
-                className="w-[95%] mx-auto lg:w-full h-auto lg:h-full object-cover"
-              />
-            </div>
-          </>
-        )}
+        <div className="text-center">
+          <h1 className="text-2xl lg:text-3xl font-light text-gray-600">In Works</h1>
+        </div>
       </div>
     </div>
   );

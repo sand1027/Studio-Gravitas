@@ -9,7 +9,9 @@ function MainSidebar({ open, setOpen }) {
     <>
       {/* Mobile Header */}
       <div className="lg:hidden flex items-center justify-between p-4 bg-white/90 backdrop-blur-sm border-b border-gray-100/50 fixed top-0 left-0 right-0 z-50">
-        <a href="/" className="font-thin tracking-wider whitespace-nowrap studio-title text-black" style={{fontWeight: '100', fontSize: '16px'}}>STUDIO GRAVITAS</a>
+        <a href="/" className="block">
+          <img src="/studioGravitas-logo.svg" alt="Studio Gravitas" className="h-8" />
+        </a>
         <button 
           onClick={() => setOpen(!open)} 
           aria-label="Toggle menu"
@@ -26,13 +28,13 @@ function MainSidebar({ open, setOpen }) {
         } transition-transform duration-300 ease-in-out`}
       >
         <nav className="p-6 space-y-3">
-          <a href="/architecture" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Architecture</a>
-          <a href="/arts" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Arts</a>
-          <a href="/objects" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Objects</a>
-          <a href="/thoughts" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Thoughts</a>
+          <a href="/architecture" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Architecture</a>
+          <a href="/thoughts" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Thoughts</a>
+          <a href="/objects" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Objects</a>
+          <a href="/arts" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Arts</a>
           <div className="mt-4 space-y-3">
-            <a href="/about" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>About</a>
-            <a href="/contact" className="block py-1 text-sm font-normal transition-colors text-black hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Contact</a>
+            <a href="/about" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>About</a>
+            <a href="/contact" className="block py-1 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Contact</a>
           </div>
         </nav>
       </div>
@@ -40,14 +42,16 @@ function MainSidebar({ open, setOpen }) {
       {/* Desktop Sidebar */}
       <aside className="hidden lg:block w-64 fixed h-screen z-50 pointer-events-none">
         <div className="pt-8 pb-3 pl-6 pointer-events-auto">
-          <a href="/" className="text-white studio-title whitespace-nowrap hover:text-gray-300 transition-colors" style={{fontSize: '1.875rem', fontWeight: '100', fontFamily: 'Montserrat, sans-serif', letterSpacing: '0.025em'}}>STUDIO GRAVITAS</a>
+          <a href="/" className="block">
+            <img src="/studioGravitas-logo.svg" alt="Studio Gravitas" className="h-12 filter invert" />
+          </a>
         </div>
         
         <nav className="overflow-hidden pointer-events-auto">
           <a href="/architecture" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Architecture</a>
-          <a href="/arts" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Arts</a>
-          <a href="/objects" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Objects</a>
           <a href="/thoughts" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Thoughts</a>
+          <a href="/objects" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Objects</a>
+          <a href="/arts" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Arts</a>
           <div className="mt-4 space-y-0">
             <a href="/about" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">About</a>
             <a href="/contact" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Contact</a>
