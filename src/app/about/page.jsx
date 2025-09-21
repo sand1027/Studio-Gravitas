@@ -2,7 +2,7 @@ export default function About() {
   return (
     <div className="min-h-screen bg-white lg:ml-80">
       <div className="p-8 lg:p-12">
-        <div className="max-w-4xl content-text">
+        <div className="content-text" style={{maxWidth: '38rem'}}>
           <div className="space-y-8 text-gray-600 leading-relaxed font-light">
             <p className="font-light">
               Studio Gravitas was established in 2016, with their inaugural project The House of Memories in India. Gravitas represents a collective spirit, a process, and an investigation into architecture and design—driven by the past, present, and future. Gravitas aims to find new meaning and interpretation in their work through a philosophy rooted in phenomenology and timeless architecture.
