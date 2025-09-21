@@ -22,7 +22,7 @@ function ProjectSidebar({ open, setOpen }) {
     <>
       {/* Mobile Header */}
       <div className="lg:hidden flex items-center justify-between p-4 bg-white/90 backdrop-blur-sm border-b border-gray-100/50 fixed top-0 left-0 right-0 z-50">
-        <a href="/" className="text-base font-thin tracking-wider whitespace-nowrap studio-title text-black" style={{fontWeight: '100'}}>STUDIO GRAVITAS</a>
+        <a href="/" className="font-thin tracking-wider whitespace-nowrap studio-title text-black" style={{fontWeight: '100', fontSize: '16px'}}>STUDIO GRAVITAS</a>
         <button 
           onClick={() => setOpen(!open)} 
           aria-label="Toggle menu"
@@ -86,6 +86,20 @@ export default function ProjectDetail({ params }) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [open, setOpen] = useState(false);
   const [showMobileContent, setShowMobileContent] = useState(false);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('details') === 'open') {
+      setShowMobileContent(true);
+      // Scroll to project details section
+      setTimeout(() => {
+        const detailsElement = document.getElementById('project-details');
+        if (detailsElement) {
+          detailsElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, []);
 
   const [project, setProject] = useState(null);
   const [paramsResolved, setParamsResolved] = useState(false);
@@ -220,7 +234,7 @@ export default function ProjectDetail({ params }) {
   }
 
   return (
-    <div className="project-page relative w-full h-screen bg-white lg:bg-black pt-16 lg:pt-0">
+    <div className="project-page relative w-full h-screen bg-white pt-16 lg:pt-0">
       <ProjectSidebar open={open} setOpen={setOpen} />
       
       {/* Desktop View */}
@@ -238,22 +252,29 @@ export default function ProjectDetail({ params }) {
               />
 
               
-              {/* Individual image content with dynamic positioning */}
-              {project.imageContents && project.imageContents[idx] && (
-                <div className={`absolute bottom-8 z-10 text-white max-w-sm ${
-                  project.imageLayouts && project.imageLayouts[idx] === 'right' 
-                    ? 'right-6' 
-                    : 'left-6'
+              {/* Individual image content with dynamic positioning - Only on first image */}
+              {idx === 0 && project.imageContents && project.imageContents[idx] && (
+                <div className={`absolute z-10 text-white max-w-sm ${
+                  project.imageLayouts && project.imageLayouts[idx] === 'right' ? 'bottom-8 right-6' :
+                  project.imageLayouts && project.imageLayouts[idx] === 'left-2' ? 'bottom-16 left-6' :
+                  project.imageLayouts && project.imageLayouts[idx] === 'right-2' ? 'bottom-16 right-6' :
+                  project.imageLayouts && project.imageLayouts[idx] === 'left-3' ? 'bottom-24 left-6' :
+                  project.imageLayouts && project.imageLayouts[idx] === 'right-3' ? 'bottom-12 right-68' :
+                  project.imageLayouts && project.imageLayouts[idx] === 'left-4' ? 'bottom-32 left-6' :
+                  project.imageLayouts && project.imageLayouts[idx] === 'right-4' ? 'bottom-20 right-68' :
+                  'bottom-8 left-6'
                 }`} style={{fontFamily: '"Segoe UI", "SegoeUICustom", sans-serif'}}>
                   {/* Project Title */}
                   {project.imageTitles && project.imageTitles[idx] && (
-                    <div className="mb-2 flex items-end space-x-1">
+                    <div className="mb-2 flex items-end space-x-1" title="Click for project details">
                       <h3 className="text-3xl font-semibold leading-none" style={{fontFamily: 'Montserrat, sans-serif'}}>
                         {project.imageTitles[idx]}
                       </h3>
                       <button
                         onClick={() => setShowContent(prev => ({...prev, [idx]: !prev[idx]}))}
-                        className="text-white hover:text-gray-300 transition-all duration-300 cursor-pointer p-1 mt-2"
+                        className="text-white hover:text-gray-300 transition-all duration-300 cursor-pointer p-1 mt-2 animate-pulse hover:animate-none"
+                        aria-label="Click for project details"
+                        title="Click for project details"
                       >
                         {showContent[idx] ? 
                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -348,7 +369,7 @@ export default function ProjectDetail({ params }) {
           
           {/* Content Toggle */}
           {project.imageContents && project.imageContents[0] && (
-            <div className="px-6">
+            <div className="px-6" id="project-details">
               <button
                 onClick={() => setShowMobileContent(!showMobileContent)}
                 className="w-full p-4 bg-white transition-colors flex items-center justify-between text-left"
@@ -363,7 +384,7 @@ export default function ProjectDetail({ params }) {
               </button>
               
               <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                showMobileContent ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                showMobileContent ? 'max-h-none opacity-100' : 'max-h-0 opacity-0'
               }`}>
                 <div className="p-6 bg-white">
                   {project.imageTitles && project.imageTitles[0] && (

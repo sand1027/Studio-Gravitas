@@ -721,79 +721,147 @@ export default function Upload() {
                 <img src={img} alt={`Gallery ${index + 1}`} className="w-32 h-24 object-cover rounded" />
               )}
               
-              <div className="mt-4 space-y-3">
-                <div>
-                  <label className="block text-sm font-medium mb-2">Content Layout Position</label>
-                  <div className="flex space-x-4">
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name={`layout-${index}`}
-                        value="left"
-                        checked={formData.imageLayouts[index] === "left"}
-                        onChange={() => handleArrayChange("imageLayouts", index, "left")}
-                        className="mr-2"
-                      />
-                      Left
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name={`layout-${index}`}
-                        value="right"
-                        checked={formData.imageLayouts[index] === "right"}
-                        onChange={() => handleArrayChange("imageLayouts", index, "right")}
-                        className="mr-2"
-                      />
-                      Right
-                    </label>
+              {index === 0 && (
+                <div className="mt-4 space-y-3">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Content Layout Position</label>
+                    <div className="grid grid-cols-2 gap-2">
+                      <label className="flex items-center">
+                        <input
+                          type="radio"
+                          name={`layout-${index}`}
+                          value="left"
+                          checked={formData.imageLayouts[index] === "left"}
+                          onChange={() => handleArrayChange("imageLayouts", index, "left")}
+                          className="mr-2"
+                        />
+                        Bottom Left
+                      </label>
+                      <label className="flex items-center">
+                        <input
+                          type="radio"
+                          name={`layout-${index}`}
+                          value="right"
+                          checked={formData.imageLayouts[index] === "right"}
+                          onChange={() => handleArrayChange("imageLayouts", index, "right")}
+                          className="mr-2"
+                        />
+                        Bottom Right
+                      </label>
+                      <label className="flex items-center">
+                        <input
+                          type="radio"
+                          name={`layout-${index}`}
+                          value="left-2"
+                          checked={formData.imageLayouts[index] === "left-2"}
+                          onChange={() => handleArrayChange("imageLayouts", index, "left-2")}
+                          className="mr-2"
+                        />
+                        Mid Left
+                      </label>
+                      <label className="flex items-center">
+                        <input
+                          type="radio"
+                          name={`layout-${index}`}
+                          value="right-2"
+                          checked={formData.imageLayouts[index] === "right-2"}
+                          onChange={() => handleArrayChange("imageLayouts", index, "right-2")}
+                          className="mr-2"
+                        />
+                        Mid Right
+                      </label>
+                      <label className="flex items-center">
+                        <input
+                          type="radio"
+                          name={`layout-${index}`}
+                          value="left-3"
+                          checked={formData.imageLayouts[index] === "left-3"}
+                          onChange={() => handleArrayChange("imageLayouts", index, "left-3")}
+                          className="mr-2"
+                        />
+                        Upper Left
+                      </label>
+                      <label className="flex items-center">
+                        <input
+                          type="radio"
+                          name={`layout-${index}`}
+                          value="right-3"
+                          checked={formData.imageLayouts[index] === "right-3"}
+                          onChange={() => handleArrayChange("imageLayouts", index, "right-3")}
+                          className="mr-2"
+                        />
+                        Upper Right
+                      </label>
+                      <label className="flex items-center">
+                        <input
+                          type="radio"
+                          name={`layout-${index}`}
+                          value="left-4"
+                          checked={formData.imageLayouts[index] === "left-4"}
+                          onChange={() => handleArrayChange("imageLayouts", index, "left-4")}
+                          className="mr-2"
+                        />
+                        Top Left
+                      </label>
+                      <label className="flex items-center">
+                        <input
+                          type="radio"
+                          name={`layout-${index}`}
+                          value="right-4"
+                          checked={formData.imageLayouts[index] === "right-4"}
+                          onChange={() => handleArrayChange("imageLayouts", index, "right-4")}
+                          className="mr-2"
+                        />
+                        Top Right
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Title</label>
+                    <input
+                      type="text"
+                      value={formData.imageTitles[index] || ""}
+                      onChange={(e) => handleArrayChange("imageTitles", index, e.target.value)}
+                      placeholder="Enter title for this image..."
+                      className="w-full p-3 border border-gray-300 rounded-md text-sm"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Progress</label>
+                    <input
+                      type="text"
+                      value={formData.imageProgress[index] || ""}
+                      onChange={(e) => handleArrayChange("imageProgress", index, e.target.value)}
+                      placeholder="Enter progress status..."
+                      className="w-full p-3 border border-gray-300 rounded-md text-sm"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Subheading</label>
+                    <input
+                      type="text"
+                      value={formData.imageSubheadings[index] || ""}
+                      onChange={(e) => handleArrayChange("imageSubheadings", index, e.target.value)}
+                      placeholder="Enter subheading..."
+                      className="w-full p-3 border border-gray-300 rounded-md text-sm"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Content for this Image</label>
+                    <textarea
+                      value={formData.imageContents[index] || ""}
+                      onChange={(e) => handleArrayChange("imageContents", index, e.target.value)}
+                      placeholder="Enter content that will appear on this specific image..."
+                      rows="4"
+                      className="w-full p-3 border border-gray-300 rounded-md text-sm"
+                    />
                   </div>
                 </div>
-                
-                <div>
-                  <label className="block text-sm font-medium mb-2">Title</label>
-                  <input
-                    type="text"
-                    value={formData.imageTitles[index] || ""}
-                    onChange={(e) => handleArrayChange("imageTitles", index, e.target.value)}
-                    placeholder="Enter title for this image..."
-                    className="w-full p-3 border border-gray-300 rounded-md text-sm"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium mb-2">Progress</label>
-                  <input
-                    type="text"
-                    value={formData.imageProgress[index] || ""}
-                    onChange={(e) => handleArrayChange("imageProgress", index, e.target.value)}
-                    placeholder="Enter progress status..."
-                    className="w-full p-3 border border-gray-300 rounded-md text-sm"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium mb-2">Subheading</label>
-                  <input
-                    type="text"
-                    value={formData.imageSubheadings[index] || ""}
-                    onChange={(e) => handleArrayChange("imageSubheadings", index, e.target.value)}
-                    placeholder="Enter subheading..."
-                    className="w-full p-3 border border-gray-300 rounded-md text-sm"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium mb-2">Content for this Image</label>
-                  <textarea
-                    value={formData.imageContents[index] || ""}
-                    onChange={(e) => handleArrayChange("imageContents", index, e.target.value)}
-                    placeholder="Enter content that will appear on this specific image..."
-                    rows="4"
-                    className="w-full p-3 border border-gray-300 rounded-md text-sm"
-                  />
-                </div>
-              </div>
+              )}
             </div>
           ))}
           <button
