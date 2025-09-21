@@ -135,7 +135,7 @@ export default function ThoughtsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white lg:bg-black relative pt-16 lg:pt-0">
+    <div className="min-h-screen bg-white relative pt-16 lg:pt-0">
       <ThoughtsSidebar menuOpen={menuOpen} setMenuOpen={setMenuOpen} containerRef={containerRef} />
       <div 
         ref={containerRef}
