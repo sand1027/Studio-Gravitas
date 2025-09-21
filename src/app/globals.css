@@ -9,6 +9,20 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap");
 
+@font-face {
+  font-family: 'GinesoSoft';
+  src: url('/fonts/GinesoSoft-ConLig.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GinesoSoft';
+  src: url('/fonts/GinesoSoft-ConReg.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -124,7 +138,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: "Poppins", "Inter", -apple-system,
+    font-family: "GinesoSoft", "Poppins", "Inter", -apple-system,
       BlinkMacSystemFont, Roboto, sans-serif !important;
     font-weight: 300;
   }
@@ -142,7 +156,7 @@
   h4,
   h5,
   h6 {
-    font-family: "Poppins", "Inter", sans-serif !important;
+    font-family: "Segoe UI", "SegoeUICustom", sans-serif !important;
     font-weight: 400;
   }
 
@@ -153,7 +167,7 @@
   }
 
   .studio-title {
-    font-family: "Montserrat", "Inter", "Segoe UI", "SegoeUICustom", sans-serif !important;
+    font-family: "Segoe UI", "SegoeUICustom", sans-serif !important;
     font-weight: 300 !important;
   }
 

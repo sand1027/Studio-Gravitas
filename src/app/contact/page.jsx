@@ -50,9 +50,8 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="space-y-12">
             <div className="max-w-xs">
-              <h1 className="text-2xl font-light text-gray-800 mb-6">Get in Touch</h1>
               <p className="text-gray-600 leading-relaxed mb-8 font-light">
-                We welcome collaborations, inquiries, and conversations about architecture, design, and the spaces we inhabit. Reach out to discuss your project or simply to connect.
+                We'd love to hear from you—whether to explore new ideas, discuss a project, or start a collaboration. Reach out and let's create something meaningful together.
               </p>
               <p className="text-gray-600 font-light">
                 For career enquiry, send your portfolios to <a href="mailto:mail@studiogravitas.com" className="font-bold text-gray-800 hover:text-gray-600">mail@studiogravitas.com</a>
@@ -104,7 +103,7 @@ export default function Contact() {
               
               <button
                 type="submit"
-                className="w-full bg-gray-800 text-white p-3 hover:bg-gray-700 transition-colors font-light"
+                className="w-full bg-gray-600 text-white p-3 hover:bg-gray-500 transition-colors font-light"
               >
                 Send Message
               </button>

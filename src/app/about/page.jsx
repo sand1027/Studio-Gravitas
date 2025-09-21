@@ -55,19 +55,19 @@ function AboutSidebar({ menuOpen, setMenuOpen, containerRef }) {
       {/* Desktop Sidebar */}
       <aside className="hidden lg:block w-64 fixed h-screen z-50 pointer-events-none">
         <div className="pt-8 pb-3 pl-6 pointer-events-auto">
-          <a href="/" className="block text-4xl studio-title text-white">
+          <a href="/" className="block text-4xl studio-title text-gray-300">
             Studio Gravitas
           </a>
         </div>
         
         <nav className="overflow-hidden pointer-events-auto">
-          <a href="/architecture" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Architecture</a>
-          <a href="/thoughts" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Thoughts</a>
-          <a href="/objects" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Objects</a>
-          <a href="/arts" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Arts</a>
+          <a href="/architecture" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-300 opacity-60 hover:opacity-100 no-underline">Architecture</a>
+          <a href="/thoughts" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-300 opacity-60 hover:opacity-100 no-underline">Thoughts</a>
+          <a href="/objects" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-300 opacity-60 hover:opacity-100 no-underline">Objects</a>
+          <a href="/arts" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-300 opacity-60 hover:opacity-100 no-underline">Arts</a>
           <div className="mt-4 space-y-0">
-            <a href="/about" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-100 no-underline">About</a>
-            <a href="/contact" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Contact</a>
+            <a href="/about" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-300 opacity-100 no-underline">About</a>
+            <a href="/contact" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-300 opacity-60 hover:opacity-100 no-underline">Contact</a>
           </div>
         </nav>
       </aside>
@@ -115,7 +115,7 @@ export default function About() {
             alt="About Studio Gravitas"
             className="w-full h-full object-cover"
           />
-          <div className="absolute top-20 left-72 z-10 text-white max-w-lg">
+          <div className="absolute bottom-8 left-6 z-10 text-gray-300 max-w-lg">
             <div className="text-base font-light leading-relaxed space-y-3">
               <p>
                 Studio Gravitas was established in 2016, with their inaugural project The House of Memories in India. Gravitas represents a collective spirit, a process, and an investigation into architecture and design—driven by the past, present, and future. Gravitas aims to find new meaning and interpretation in their work through a philosophy rooted in phenomenology and timeless architecture.
