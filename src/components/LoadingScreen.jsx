@@ -20,7 +20,7 @@ export default function LoadingScreen() {
   }, []);
 
   return (
-    <div className="fixed inset-0 bg-white z-50 flex items-center justify-center">
+    <div className="fixed inset-0 bg-white z-50 flex items-end justify-center pb-16">
       <div className="text-center space-y-8">
         {/* Logo Animation */}
         <div className="relative">

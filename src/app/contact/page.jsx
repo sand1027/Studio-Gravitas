@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -19,47 +19,55 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("Sending...");
-    toast.loading('Sending message...', { id: 'email-send' });
-    
+    toast.loading("Sending message...", { id: "email-send" });
+
     try {
       const res = await fetch("/api/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      
+
       if (res.ok) {
-        toast.success('Message sent successfully!', { id: 'email-send' });
+        toast.success("Message sent successfully!", { id: "email-send" });
         setFormData({ name: "", email: "", phone: "", message: "" });
         setStatus("");
       } else {
-        toast.error('Failed to send message. Please try again.', { id: 'email-send' });
+        toast.error("Failed to send message. Please try again.", {
+          id: "email-send",
+        });
         setStatus("");
       }
     } catch (error) {
-      toast.error('Network error. Please check your connection.', { id: 'email-send' });
+      toast.error("Network error. Please check your connection.", {
+        id: "email-send",
+      });
       setStatus("");
     }
   };
 
   return (
-    <div className="min-h-screen bg-white lg:ml-80">
-      <div className="max-w-6xl mx-auto px-8 pt-4 pb-16 lg:pt-20 lg:pb-16 content-text">
-
-        
+    <div className="min-h-screen bg-white lg:ml-96">
+      <div className="max-w-6xl mx-auto px-8 pt-4 pb-16 lg:pt-22 lg:pb-16 lg:pl-6 content-text">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="space-y-12">
             <div className="max-w-xs">
-              <p className="text-gray-600 leading-relaxed mb-8 font-light">
-                We'd love to hear from you—whether to explore new ideas, discuss a project, or start a collaboration. Reach out and let's create something meaningful together.
+              <p className="text-base font-light leading-relaxed text-gray-600 mb-2">
+                We'd love to hear from you—whether to explore new ideas, discuss
+                a project, or start a collaboration. Reach out and let's create
+                something meaningful together.
               </p>
               <p className="text-gray-600 font-light">
-                For career enquiry, send your portfolios to <a href="mailto:mail@studiogravitas.com" className="font-bold text-gray-800 hover:text-gray-600">mail@studiogravitas.com</a>
+                <a
+                  href="mailto:mail@studiogravitas.com"
+                  className="font-bold text-gray-800 hover:text-gray-600"
+                >
+                  mail@studiogravitas.com
+                </a>
               </p>
             </div>
-            
           </div>
-          
+
           <div className="max-w-80">
             <form onSubmit={handleSubmit} className="space-y-4">
               <input
@@ -71,7 +79,7 @@ export default function Contact() {
                 className="w-full p-3 border border-gray-300 focus:outline-none focus:border-gray-800"
                 required
               />
-              
+
               <input
                 name="email"
                 type="email"
@@ -81,7 +89,7 @@ export default function Contact() {
                 className="w-full p-3 border border-gray-300 focus:outline-none focus:border-gray-800"
                 required
               />
-              
+
               <input
                 name="phone"
                 type="tel"
@@ -90,7 +98,7 @@ export default function Contact() {
                 placeholder="Phone"
                 className="w-full p-3 border border-gray-300 focus:outline-none focus:border-gray-800"
               />
-              
+
               <textarea
                 name="message"
                 rows="12"
@@ -100,16 +108,14 @@ export default function Contact() {
                 className="w-full p-3 border border-gray-300 focus:outline-none focus:border-gray-800 resize-none"
                 required
               />
-              
+
               <button
                 type="submit"
-                className="w-full bg-gray-600 text-white p-3 hover:bg-gray-500 transition-colors font-light"
+                className="w-full bg-gray-600 text-white p-3 hover:bg-gray-400 transition-colors font-light"
               >
                 Send Message
               </button>
             </form>
-            
-
           </div>
         </div>
       </div>

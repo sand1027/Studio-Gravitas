@@ -10,6 +10,18 @@ export async function POST(request) {
       return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
     }
 
+    // Check file size (limit to 50MB)
+    if (file.size > 50 * 1024 * 1024) {
+      return NextResponse.json({ error: "File too large. Maximum size is 50MB." }, { status: 400 });
+    }
+
+    // Check file type
+    if (!file.type.startsWith('image/')) {
+      return NextResponse.json({ error: "Only image files are allowed." }, { status: 400 });
+    }
+
+    console.log(`Uploading file: ${file.name}, size: ${(file.size / 1024 / 1024).toFixed(2)}MB, type: ${file.type}`);
+
     // Convert file to base64
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
@@ -24,6 +36,9 @@ export async function POST(request) {
     });
   } catch (error) {
     console.error("Upload error:", error);
-    return NextResponse.json({ error: "Upload failed" }, { status: 500 });
+    return NextResponse.json({ 
+      error: error.message || "Upload failed",
+      details: error.toString()
+    }, { status: 500 });
   }
 }

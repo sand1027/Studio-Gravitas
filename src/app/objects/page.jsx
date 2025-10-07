@@ -53,21 +53,21 @@ function ObjectsSidebar({ menuOpen, setMenuOpen, containerRef }) {
       </div>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:block w-64 fixed h-screen z-50 pointer-events-none">
-        <div className="pt-8 pb-3 pl-6 pointer-events-auto">
-          <a href="/" className="block text-4xl studio-title text-gray-800">
+      <aside className="hidden lg:block w-96 fixed h-screen z-50 pointer-events-none">
+        <div className="pt-8 pb-3 px-8 pointer-events-auto">
+          <a href="/" className="block text-5xl studio-title text-gray-700 hover:text-gray-800 transition-colors">
             Studio Gravitas
           </a>
         </div>
         
         <nav className="overflow-hidden pointer-events-auto">
-          <a href="/architecture" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-800 opacity-60 hover:opacity-100 no-underline">Architecture</a>
-          <a href="/thoughts" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-800 opacity-60 hover:opacity-100 no-underline">Thoughts</a>
-          <a href="/objects" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-800 opacity-100 no-underline">Objects</a>
-          <a href="/arts" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-800 opacity-60 hover:opacity-100 no-underline">Arts</a>
-          <div className="mt-4 space-y-0">
-            <a href="/about" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-800 opacity-60 hover:opacity-100 no-underline">About</a>
-            <a href="/contact" className="block py-0 pl-6 text-sm font-normal transition-colors text-gray-800 opacity-60 hover:opacity-100 no-underline">Contact</a>
+          <a href="/architecture" className="block -my-1 pl-8 text-lg font-normal transition-colors text-gray-700 opacity-60 hover:opacity-100 no-underline">Architecture</a>
+          <a href="/thoughts" className="block -my-1 pl-8 text-lg font-normal transition-colors text-gray-700 opacity-60 hover:opacity-100 no-underline">Thoughts</a>
+          <a href="/objects" className="block -my-1 pl-8 text-lg font-normal transition-colors text-gray-700 opacity-100 no-underline">Objects</a>
+          <a href="/arts" className="block -my-1 pl-8 text-lg font-normal transition-colors text-gray-700 opacity-60 hover:opacity-100 no-underline">Arts</a>
+          <div className="mt-2">
+            <a href="/about" className="block -my-1 pl-8 text-lg font-normal transition-colors text-gray-700 opacity-60 hover:opacity-100 no-underline">About</a>
+            <a href="/contact" className="block -my-1 pl-8 text-lg font-normal transition-colors text-gray-700 opacity-60 hover:opacity-100 no-underline">Contact</a>
           </div>
         </nav>
       </aside>

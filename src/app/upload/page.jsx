@@ -266,6 +266,8 @@ export default function Upload() {
               imageTitles: existingProject.imageTitles || ['', ''],
               imageProgress: existingProject.imageProgress || ['', ''],
               imageSubheadings: existingProject.imageSubheadings || ['', ''],
+              contentWidth: existingProject.contentWidth || 'max-w-sm',
+              textAlign: existingProject.textAlign || 'text-left',
               features: existingProject.features || ['', '', '', '', '']
             });
           }
@@ -302,6 +304,8 @@ export default function Upload() {
     imageTitles: ["", ""],
     imageProgress: ["", ""],
     imageSubheadings: ["", ""],
+    contentWidth: "max-w-sm",
+    textAlign: "text-left",
     features: ["", "", "", "", ""]
   });
 
@@ -401,6 +405,8 @@ export default function Upload() {
       imageTitles: formData.imageTitles || [],
       imageProgress: formData.imageProgress || [],
       imageSubheadings: formData.imageSubheadings || [],
+      contentWidth: formData.contentWidth,
+      textAlign: formData.textAlign,
       features: formData.features.filter(feature => feature.trim()),
       metadata: {
         location: formData.location,
@@ -556,7 +562,7 @@ export default function Upload() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto lg:ml-80">
+    <div className="max-w-4xl mx-auto lg:ml-96 px-8 py-16">
       <div className="space-y-6">
         <h1 className="text-3xl font-light tracking-wide">{editMode ? 'Edit Project' : 'Upload New Project'}</h1>
         <div className="w-16 h-px bg-black"></div>
@@ -826,6 +832,39 @@ export default function Upload() {
                         />
                         Top Right
                       </label>
+                      <label className="flex items-center">
+                        <input
+                          type="radio"
+                          name={`layout-${index}`}
+                          value="sidebar-align"
+                          checked={formData.imageLayouts[index] === "sidebar-align"}
+                          onChange={() => handleArrayChange("imageLayouts", index, "sidebar-align")}
+                          className="mr-2"
+                        />
+                        Sidebar Align
+                      </label>
+                      <label className="flex items-center">
+                        <input
+                          type="radio"
+                          name={`layout-${index}`}
+                          value="left-align"
+                          checked={formData.imageLayouts[index] === "left-align"}
+                          onChange={() => handleArrayChange("imageLayouts", index, "left-align")}
+                          className="mr-2"
+                        />
+                        Left Align
+                      </label>
+                      <label className="flex items-center">
+                        <input
+                          type="radio"
+                          name={`layout-${index}`}
+                          value="right-align"
+                          checked={formData.imageLayouts[index] === "right-align"}
+                          onChange={() => handleArrayChange("imageLayouts", index, "right-align")}
+                          className="mr-2"
+                        />
+                        Right Align
+                      </label>
                     </div>
                   </div>
                   
@@ -860,6 +899,35 @@ export default function Upload() {
                       placeholder="Enter subheading..."
                       className="w-full p-3 border border-gray-300 rounded-md text-sm"
                     />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Content Width</label>
+                    <select
+                      value={formData.contentWidth}
+                      onChange={(e) => setFormData(prev => ({ ...prev, contentWidth: e.target.value }))}
+                      className="w-full p-3 border border-gray-300 rounded-md text-sm mb-3"
+                    >
+                      <option value="max-w-xs">Extra Small (max-w-xs)</option>
+                      <option value="max-w-sm">Small (max-w-sm)</option>
+                      <option value="max-w-md">Medium (max-w-md)</option>
+                      <option value="max-w-lg">Large (max-w-lg)</option>
+                      <option value="max-w-xl">Extra Large (max-w-xl)</option>
+                      <option value="max-w-2xl">2X Large (max-w-2xl)</option>
+                    </select>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Text Alignment</label>
+                    <select
+                      value={formData.textAlign || 'text-left'}
+                      onChange={(e) => setFormData(prev => ({ ...prev, textAlign: e.target.value }))}
+                      className="w-full p-3 border border-gray-300 rounded-md text-sm mb-3"
+                    >
+                      <option value="text-left">Left</option>
+                      <option value="text-center">Center</option>
+                      <option value="text-right">Right</option>
+                    </select>
                   </div>
                   
                   <div>
