@@ -74,9 +74,9 @@ export default function AppSidebar({ open, setOpen }) {
       </div>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:block bg-white/80 backdrop-blur-sm w-80 fixed h-screen overflow-hidden z-50">
-        <div className="pt-8 pb-6 px-6">
-          <a href="/" className="block text-4xl studio-title text-gray-800">
+      <aside className="hidden lg:block bg-white/80 backdrop-blur-sm w-96 fixed h-screen overflow-hidden z-50">
+        <div className="pt-8 pb-3 px-8">
+          <a href="/" className="block text-5xl studio-title text-gray-700 hover:text-gray-800 transition-colors">
             Studio Gravitas
           </a>
         </div>
@@ -88,11 +88,11 @@ export default function AppSidebar({ open, setOpen }) {
               <a
                 key={link.href}
                 href={link.href}
-                className={`block py-0 px-6 text-sm font-normal transition-colors cursor-pointer relative z-10 ${
+                className={`block -my-1 px-8 text-lg font-normal transition-colors cursor-pointer relative z-10 ${
                   isActive 
-                    ? 'text-gray-800 bg-white/50' 
-                    : 'text-gray-700 hover:text-gray-800 hover:bg-white/30'
-                } ${link.spaceBefore ? 'mt-4' : ''} no-underline`}
+                    ? 'text-gray-800 bg-white/50 opacity-100' 
+                    : 'text-gray-700 hover:text-gray-800 hover:bg-white/30 opacity-60 hover:opacity-100'
+                } ${link.spaceBefore ? 'mt-2' : ''} no-underline`}
                 style={{ textDecoration: 'none', pointerEvents: 'auto' }}
               >
                 {link.label}

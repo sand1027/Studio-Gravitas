@@ -153,7 +153,7 @@ export default function Architecture() {
   return (
     <>
       <ArchitectureSidebar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <div className={`min-h-screen bg-white px-4 pb-4 pt-2 lg:p-8 lg:ml-80 lg:pt-24 transition-all duration-300 ease-in-out ${
+      <div className={`min-h-screen bg-white px-4 pb-4 pt-2 lg:p-8 lg:ml-96 lg:pt-24 transition-all duration-300 ease-in-out ${
         menuOpen ? 'mt-[180px] lg:mt-0' : 'mt-0'
       }`}>
         <div className="max-w-full mx-auto">
@@ -181,9 +181,11 @@ export default function Architecture() {
             ))}
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center py-20">
-              <div className="w-8 h-8 border-2 border-gray-300 border-t-black rounded-full animate-spin mb-4"></div>
-              <p className="text-gray-500 font-light">Loading architecture projects...</p>
+            <div className="flex items-center justify-center min-h-[60vh]">
+              <div className="text-center">
+                <div className="w-8 h-8 border-2 border-gray-300 border-t-black rounded-full animate-spin mb-4 mx-auto"></div>
+                <p className="text-gray-500 font-light">Loading architecture projects...</p>
+              </div>
             </div>
           )}
         </div>

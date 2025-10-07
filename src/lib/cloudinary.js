@@ -6,23 +6,32 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export const uploadImage = async (file, folder = 'morq-portfolio') => {
-  try {
-    const result = await cloudinary.uploader.upload(file, {
-      folder,
-      resource_type: 'auto',
-      quality: 'auto:good',
-      fetch_format: 'auto',
-      flags: 'progressive',
-      transformation: [
-        { width: 2000, height: 2000, crop: 'limit' },
-        { quality: 85 }
-      ]
-    });
-    return result.secure_url;
-  } catch (error) {
-    console.error('Cloudinary upload error:', error);
-    throw new Error(`Image upload failed: ${error.message}`);
+export const uploadImage = async (file, folder = 'morq-portfolio', retries = 3) => {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const result = await cloudinary.uploader.upload(file, {
+        folder,
+        resource_type: 'auto',
+        quality: 'auto:good',
+        fetch_format: 'auto',
+        flags: 'progressive',
+        timeout: 120000, // 2 minutes timeout
+        transformation: [
+          { width: 1800, height: 1800, crop: 'limit' },
+          { quality: 80 }
+        ]
+      });
+      return result.secure_url;
+    } catch (error) {
+      console.error(`Cloudinary upload error (attempt ${attempt}):`, error);
+      
+      if (attempt === retries) {
+        throw new Error(`Image upload failed after ${retries} attempts: ${error.message || 'Unknown error'}`);
+      }
+      
+      // Wait before retry (exponential backoff)
+      await new Promise(resolve => setTimeout(resolve, attempt * 2000));
+    }
   }
 };
 

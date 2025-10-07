@@ -1,12 +1,23 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Edit, Trash2, Eye, EyeOff, ChevronDown, ChevronUp, ChevronRight, Square, SquareStack, Menu, X } from "lucide-react";
-import toast from 'react-hot-toast';
+import {
+  Edit,
+  Trash2,
+  Eye,
+  EyeOff,
+  ChevronDown,
+  ChevronUp,
+  ChevronRight,
+  Square,
+  SquareStack,
+  Menu,
+  X,
+} from "lucide-react";
+import toast from "react-hot-toast";
 
 // Custom sidebar for project pages
 function ProjectSidebar({ open, setOpen }) {
-
   useEffect(() => {
     const handleScroll = () => {
       if (open) {
@@ -14,8 +25,8 @@ function ProjectSidebar({ open, setOpen }) {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [open, setOpen]);
 
   return (
@@ -25,8 +36,8 @@ function ProjectSidebar({ open, setOpen }) {
         <a href="/" className="block text-3xl studio-title text-gray-800">
           Studio Gravitas
         </a>
-        <button 
-          onClick={() => setOpen(!open)} 
+        <button
+          onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
           className="p-2 hover:bg-gray-50/50 rounded-md transition-colors z-50 text-black"
         >
@@ -41,38 +52,105 @@ function ProjectSidebar({ open, setOpen }) {
         } transition-transform duration-300 ease-in-out`}
       >
         <nav className="p-6 space-y-1">
-          <a href="/architecture" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Architecture</a>
-          <a href="/thoughts" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Thoughts</a>
-          <a href="/objects" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Objects</a>
-          <a href="/arts" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Arts</a>
+          <a
+            href="/architecture"
+            className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline"
+            onClick={() => setOpen(false)}
+          >
+            Architecture
+          </a>
+          <a
+            href="/thoughts"
+            className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline"
+            onClick={() => setOpen(false)}
+          >
+            Thoughts
+          </a>
+          <a
+            href="/objects"
+            className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline"
+            onClick={() => setOpen(false)}
+          >
+            Objects
+          </a>
+          <a
+            href="/arts"
+            className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline"
+            onClick={() => setOpen(false)}
+          >
+            Arts
+          </a>
           <div className="mt-2 space-y-1">
-            <a href="/about" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>About</a>
-            <a href="/contact" className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline" onClick={() => setOpen(false)}>Contact</a>
+            <a
+              href="/about"
+              className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline"
+              onClick={() => setOpen(false)}
+            >
+              About
+            </a>
+            <a
+              href="/contact"
+              className="block py-0.5 text-sm font-normal transition-colors text-gray-800 hover:text-gray-600 no-underline"
+              onClick={() => setOpen(false)}
+            >
+              Contact
+            </a>
           </div>
         </nav>
       </div>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:block w-64 fixed h-screen z-50 pointer-events-none">
-        <div className="pt-8 pb-3 pl-6 pointer-events-auto">
-          <a href="/" className="block text-4xl studio-title text-gray-300">
+      <aside className="hidden lg:block w-96 fixed h-screen z-50 pointer-events-none">
+        <div className="pt-8 pb-3 px-8 pointer-events-auto">
+          <a
+            href="/"
+            className="block text-5xl studio-title text-white opacity-60 hover:opacity-100 transition-opacity"
+          >
             Studio Gravitas
           </a>
         </div>
-        
+
         <nav className="overflow-hidden pointer-events-auto">
-          <a href="/architecture" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Architecture</a>
-          <a href="/thoughts" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Thoughts</a>
-          <a href="/objects" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Objects</a>
-          <a href="/arts" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Arts</a>
-          <div className="mt-4 space-y-0">
-            <a href="/about" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">About</a>
-            <a href="/contact" className="block py-0 pl-6 text-sm font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline">Contact</a>
+          <a
+            href="/architecture"
+            className="block -my-1 pl-8 text-lg font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline"
+          >
+            Architecture
+          </a>
+          <a
+            href="/thoughts"
+            className="block -my-1 pl-8 text-lg font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline"
+          >
+            Thoughts
+          </a>
+          <a
+            href="/objects"
+            className="block -my-1 pl-8 text-lg font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline"
+          >
+            Objects
+          </a>
+          <a
+            href="/arts"
+            className="block -my-1 pl-8 text-lg font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline"
+          >
+            Arts
+          </a>
+          <div className="mt-2">
+            <a
+              href="/about"
+              className="block -my-1 pl-8 text-lg font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline"
+            >
+              About
+            </a>
+            <a
+              href="/contact"
+              className="block -my-1 pl-8 text-lg font-normal transition-colors text-white opacity-60 hover:opacity-100 no-underline"
+            >
+              Contact
+            </a>
           </div>
         </nav>
       </aside>
-
-
     </>
   );
 }
@@ -93,13 +171,13 @@ export default function ProjectDetail({ params }) {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('details') === 'open') {
+    if (urlParams.get("details") === "open") {
       setShowMobileContent(true);
       // Scroll to project details section
       setTimeout(() => {
-        const detailsElement = document.getElementById('project-details');
+        const detailsElement = document.getElementById("project-details");
         if (detailsElement) {
-          detailsElement.scrollIntoView({ behavior: 'smooth' });
+          detailsElement.scrollIntoView({ behavior: "smooth" });
         }
       }, 100);
     }
@@ -113,22 +191,34 @@ export default function ProjectDetail({ params }) {
   useEffect(() => {
     const resolveParams = async () => {
       const awaitedParams = await params;
-      console.log('URL Params:', awaitedParams);
-      
+      console.log("URL Params:", awaitedParams);
+
       try {
-        const res = await fetch('/api/projects');
+        const res = await fetch("/api/projects");
         const { projects } = await res.json();
-        console.log('All projects:', projects.map(p => ({ title: p.title, category: p.category, subcategory: p.subcategory, slug: p.slug })));
-        
-        const foundProject = projects.find(
-          (p) => p.category === awaitedParams.category && 
-                 p.subcategory === decodeURIComponent(awaitedParams.subcategory) && 
-                 p.slug === awaitedParams.slug
+        console.log(
+          "All projects:",
+          projects.map((p) => ({
+            title: p.title,
+            category: p.category,
+            subcategory: p.subcategory,
+            slug: p.slug,
+          }))
         );
-        console.log('Found project:', foundProject ? foundProject.title : 'Not found');
+
+        const foundProject = projects.find(
+          (p) =>
+            p.category === awaitedParams.category &&
+            p.subcategory === decodeURIComponent(awaitedParams.subcategory) &&
+            p.slug === awaitedParams.slug
+        );
+        console.log(
+          "Found project:",
+          foundProject ? foundProject.title : "Not found"
+        );
         setProject(foundProject);
       } catch (error) {
-        console.error('Error fetching project:', error);
+        console.error("Error fetching project:", error);
       }
       setParamsResolved(true);
     };
@@ -138,25 +228,28 @@ export default function ProjectDetail({ params }) {
   useEffect(() => {
     const handleScroll = () => {
       if (!containerRef.current || !project) return;
-      
+
       const container = containerRef.current;
       const scrollTop = container.scrollTop;
       const windowHeight = container.clientHeight;
       const imageHeight = windowHeight;
-      
+
       // Show scroll-to-top button after scrolling past first image
       setShowScrollTop(scrollTop > windowHeight * 0.5);
-      
+
       const newIndex = Math.floor(scrollTop / imageHeight);
-      if (newIndex !== currentImageIndex && newIndex < project.galleryImages.length) {
+      if (
+        newIndex !== currentImageIndex &&
+        newIndex < project.galleryImages.length
+      ) {
         setCurrentImageIndex(newIndex);
       }
     };
 
     const container = containerRef.current;
     if (container) {
-      container.addEventListener('scroll', handleScroll);
-      return () => container.removeEventListener('scroll', handleScroll);
+      container.addEventListener("scroll", handleScroll);
+      return () => container.removeEventListener("scroll", handleScroll);
     }
   }, [currentImageIndex, project]);
 
@@ -164,7 +257,7 @@ export default function ProjectDetail({ params }) {
     if (containerRef.current) {
       containerRef.current.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
@@ -182,18 +275,18 @@ export default function ProjectDetail({ params }) {
       const response = await fetch("/api/auth", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password })
+        body: JSON.stringify({ password }),
       });
 
       if (response.ok) {
         setIsAuthenticated(true);
       } else {
         setError("Invalid password");
-        toast.error('Invalid password');
+        toast.error("Invalid password");
       }
     } catch (err) {
       setError("Authentication failed");
-      toast.error('Authentication failed');
+      toast.error("Authentication failed");
     }
     setLoading(false);
   };
@@ -202,18 +295,18 @@ export default function ProjectDetail({ params }) {
     if (confirm("Are you sure you want to delete this project?")) {
       try {
         const response = await fetch(`/api/projects/${project.id}`, {
-          method: "DELETE"
+          method: "DELETE",
         });
         if (response.ok) {
-          toast.success('Project deleted successfully!');
+          toast.success("Project deleted successfully!");
           setTimeout(() => {
             window.location.href = "/";
           }, 1000);
         } else {
-          toast.error('Delete failed');
+          toast.error("Delete failed");
         }
       } catch (err) {
-        toast.error('Delete failed');
+        toast.error("Delete failed");
       }
     }
   };
@@ -221,7 +314,7 @@ export default function ProjectDetail({ params }) {
   if (!paramsResolved) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-white">
-        <div className="w-8 h-8 border-2 border-gray-300 border-t-black rounded-full animate-spin"></div>
+        <div className="w-8 h-8 border-2 border-gray-300 border-t-black rounded-full animate-spin mx-auto"></div>
       </div>
     );
   }
@@ -230,8 +323,12 @@ export default function ProjectDetail({ params }) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-white">
         <div className="text-center space-y-4">
-          <h1 className="text-3xl font-light text-gray-800">Project Not Found</h1>
-          <p className="text-gray-600">The requested project could not be found.</p>
+          <h1 className="text-3xl font-light text-gray-800">
+            Project Not Found
+          </h1>
+          <p className="text-gray-600">
+            The requested project could not be found.
+          </p>
         </div>
       </div>
     );
@@ -240,10 +337,10 @@ export default function ProjectDetail({ params }) {
   return (
     <div className="project-page relative w-full h-screen bg-white pt-16 lg:pt-0">
       <ProjectSidebar open={open} setOpen={setOpen} />
-      
+
       {/* Desktop View */}
       <div className="hidden lg:block w-full h-screen">
-        <div 
+        <div
           ref={containerRef}
           className="w-full h-screen overflow-y-auto snap-y snap-mandatory project-scroll"
         >
@@ -255,80 +352,139 @@ export default function ProjectDetail({ params }) {
                 className="w-full h-full object-cover"
               />
 
-              
               {/* Individual image content with dynamic positioning - Only on first image */}
-              {idx === 0 && project.imageContents && project.imageContents[idx] && (
-                <div className={`absolute z-10 text-white ${
-                  project.imageLayouts && (project.imageLayouts[idx] === 'right-3' || project.imageLayouts[idx] === 'right-4') ? 'max-w-xs' : 'max-w-sm'
-                } ${
-                  project.imageLayouts && project.imageLayouts[idx] === 'right' ? 'bottom-8 right-6' :
-                  project.imageLayouts && project.imageLayouts[idx] === 'left-2' ? 'bottom-16 left-6' :
-                  project.imageLayouts && project.imageLayouts[idx] === 'right-2' ? 'bottom-16 right-14' :
-                  project.imageLayouts && project.imageLayouts[idx] === 'left-3' ? 'bottom-24 left-6' :
-                  project.imageLayouts && project.imageLayouts[idx] === 'right-3' ? 'bottom-12 right-[20rem]' :
-                  project.imageLayouts && project.imageLayouts[idx] === 'left-4' ? 'bottom-32 left-6' :
-                  project.imageLayouts && project.imageLayouts[idx] === 'right-4' ? 'bottom-32 right-[20rem]' :
-                  'bottom-8 left-6'
-}`}>
-                  {/* Project Title */}
-                  {project.imageTitles && project.imageTitles[idx] && (
-                    <div className="mb-2 flex items-end space-x-1" title="Click for project details">
-                      <h1 className="text-3xl font-semibold leading-none">
-                        {project.imageTitles[idx]}
-                      </h1>
-                      <button
-                        onClick={() => setShowContent(prev => ({...prev, [idx]: !prev[idx]}))}
-                        className="hover:scale-110 transition-all duration-500 cursor-pointer p-1 mt-2 hover:bg-gradient-to-r hover:from-white/20 hover:to-gray-200/30 hover:shadow-lg rounded-md"
-                        aria-label="Click for project details"
+              {idx === 0 &&
+                project.imageContents &&
+                project.imageContents[idx] && (
+                  <div
+                    className={`absolute z-10 text-white ${
+                      project.contentWidth || "max-w-sm"
+                    } ${
+                      project.imageLayouts &&
+                      project.imageLayouts[idx] === "right"
+                        ? "bottom-8 right-6"
+                        : project.imageLayouts &&
+                          project.imageLayouts[idx] === "left-2"
+                        ? "bottom-16 left-9"
+                        : project.imageLayouts &&
+                          project.imageLayouts[idx] === "right-2"
+                        ? "bottom-16 right-14"
+                        : project.imageLayouts &&
+                          project.imageLayouts[idx] === "left-3"
+                        ? "bottom-24 left-6"
+                        : project.imageLayouts &&
+                          project.imageLayouts[idx] === "right-3"
+                        ? "bottom-12 right-[20rem]"
+                        : project.imageLayouts &&
+                          project.imageLayouts[idx] === "left-4"
+                        ? "bottom-32 left-6"
+                        : project.imageLayouts &&
+                          project.imageLayouts[idx] === "right-4"
+                        ? "bottom-32 right-[20rem]"
+                        : project.imageLayouts &&
+                          project.imageLayouts[idx] === "sidebar-align"
+                        ? "top-8 right-6"
+                        : project.imageLayouts &&
+                          project.imageLayouts[idx] === "left-align"
+                        ? "bottom-8 left-6 text-left"
+                        : project.imageLayouts &&
+                          project.imageLayouts[idx] === "right-align"
+                        ? "bottom-8 right-6 text-right"
+                        : "bottom-8 left-6"
+                    }`}
+                  >
+                    {/* Project Title */}
+                    {project.imageTitles && project.imageTitles[idx] && (
+                      <div
+                        className="mb-2 flex items-end space-x-1"
                         title="Click for project details"
-                        style={{fontSize: '12px'}}
                       >
-                        {showContent[idx] ? 
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
-                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-                          </svg> : 
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
-                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                          </svg>
-                        }
-                      </button>
-                    </div>
-                  )}
-                  
-                  {/* Progress - Always visible */}
-                  {project.imageProgress && project.imageProgress[idx] && (
-                    <div className="text-xs text-white leading-none mb-0.5">
-                      {project.imageProgress[idx]}
-                    </div>
-                  )}
-                  
-                  {/* Subheading - Always visible */}
-                  {project.imageSubheadings && project.imageSubheadings[idx] && (
-                    <div className="text-base font-medium opacity-90 mb-2">
-                      {project.imageSubheadings[idx]}
-                    </div>
-                  )}
-                  
-                  {/* Collapsible Content - Only main content */}
-                  <div className={`transition-all duration-500 ease-in-out overflow-hidden ${
-                    showContent[idx] ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
-                  }`}>
-                    <div className="text-sm font-semibold leading-tight opacity-90 max-w-[22.5rem]">
-                      <div dangerouslySetInnerHTML={{ __html: project.imageContents[idx].replace(/\n/g, '<br />') }} />
+                        <h1 className="text-3xl font-normal leading-none">
+                          {project.imageTitles[idx]}
+                        </h1>
+                        <button
+                          onClick={() =>
+                            setShowContent((prev) => ({
+                              ...prev,
+                              [idx]: !prev[idx],
+                            }))
+                          }
+                          className="hover:scale-110 transition-all duration-500 cursor-pointer p-1 mt-2 hover:bg-gradient-to-r hover:from-white/20 hover:to-gray-200/30 hover:shadow-lg rounded-md"
+                          aria-label="Click for project details"
+                          title="Click for project details"
+                          style={{ fontSize: "12px" }}
+                        >
+                          {showContent[idx] ? (
+                            <svg
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="white"
+                              strokeWidth="3"
+                            >
+                              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                            </svg>
+                          ) : (
+                            <svg
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="white"
+                              strokeWidth="3"
+                            >
+                              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                            </svg>
+                          )}
+                        </button>
+                      </div>
+                    )}
+
+                    {/* Progress - Always visible */}
+                    {project.imageProgress && project.imageProgress[idx] && (
+                      <div className="text-xs text-white leading-none mb-0.5">
+                        {project.imageProgress[idx]}
+                      </div>
+                    )}
+
+                    {/* Subheading - Always visible */}
+                    {project.imageSubheadings &&
+                      project.imageSubheadings[idx] && (
+                        <div className="text-base font-medium opacity-90 mb-2">
+                          {project.imageSubheadings[idx]}
+                        </div>
+                      )}
+
+                    {/* Collapsible Content - Only main content */}
+                    <div
+                      className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                        showContent[idx]
+                          ? "max-h-screen opacity-100"
+                          : "max-h-0 opacity-0"
+                      }`}
+                    >
+                      <div className={`text-sm font-semibold leading-tight opacity-90 ${
+                        project.textAlign || "text-left"
+                      }`}>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: project.imageContents[idx].replace(
+                              /\n/g,
+                              "<br />"
+                            ),
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-              
-
+                )}
             </div>
           ))}
         </div>
-        
 
-        
         {currentImageIndex === 0 && (
           <button
             onClick={handleEditClick}
@@ -337,7 +493,7 @@ export default function ProjectDetail({ params }) {
             <Edit size={12} />
           </button>
         )}
-        
+
         {/* Custom Scroll to Top for Desktop */}
         {showScrollTop && (
           <button
@@ -351,15 +507,19 @@ export default function ProjectDetail({ params }) {
       </div>
 
       {/* Mobile View */}
-      <div className={`lg:hidden min-h-screen bg-white transition-all duration-300 ease-in-out ${
-        open ? 'mt-[260px] lg:mt-0' : 'mt-0'
-      }`}>
+      <div
+        className={`lg:hidden min-h-screen bg-white transition-all duration-300 ease-in-out ${
+          open ? "mt-[260px] lg:mt-0" : "mt-0"
+        }`}
+      >
         <div>
           {/* Project Header */}
           <div className="p-6 bg-gray-50 mt-0">
-            <h1 className="text-2xl font-light tracking-wide">{project.title}</h1>
+            <h1 className="text-2xl font-light tracking-wide">
+              {project.title}
+            </h1>
           </div>
-          
+
           {/* Gallery */}
           <div className="space-y-1 mb-8">
             {project.galleryImages.map((img, idx) => (
@@ -372,7 +532,7 @@ export default function ProjectDetail({ params }) {
               </div>
             ))}
           </div>
-          
+
           {/* Content Toggle */}
           {project.imageContents && project.imageContents[0] && (
             <div className="px-6" id="project-details">
@@ -381,38 +541,49 @@ export default function ProjectDetail({ params }) {
                 className="w-full p-4 bg-white transition-colors flex items-center justify-between text-left"
               >
                 <span className="text-base font-medium">Project Details</span>
-                <ChevronRight 
-                  size={20} 
+                <ChevronRight
+                  size={20}
                   className={`transition-transform duration-200 ${
-                    showMobileContent ? 'rotate-90' : ''
+                    showMobileContent ? "rotate-90" : ""
                   }`}
                 />
               </button>
-              
-              <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                showMobileContent ? 'max-h-none opacity-100' : 'max-h-0 opacity-0'
-              }`}>
+
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  showMobileContent
+                    ? "max-h-none opacity-100"
+                    : "max-h-0 opacity-0"
+                }`}
+              >
                 <div className="p-6 bg-white">
                   {project.imageTitles && project.imageTitles[0] && (
                     <h4 className="text-base font-medium mb-2">
                       {project.imageTitles[0]}
                     </h4>
                   )}
-                  
+
                   {project.imageProgress && project.imageProgress[0] && (
                     <div className="text-xs text-gray-600 mb-1">
                       {project.imageProgress[0]}
                     </div>
                   )}
-                  
+
                   {project.imageSubheadings && project.imageSubheadings[0] && (
                     <div className="text-sm font-light text-gray-600 mb-3">
                       {project.imageSubheadings[0]}
                     </div>
                   )}
-                  
+
                   <div className="text-sm text-gray-700 leading-relaxed">
-                    <div dangerouslySetInnerHTML={{ __html: project.imageContents[0].replace(/\n/g, '<br />') }} />
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: project.imageContents[0].replace(
+                          /\n/g,
+                          "<br />"
+                        ),
+                      }}
+                    />
                   </div>
                 </div>
               </div>
@@ -425,7 +596,9 @@ export default function ProjectDetail({ params }) {
         <div className="fixed inset-0 bg-transparent z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-lg max-w-2xl w-full p-8 text-black shadow-2xl max-h-[80vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-light text-black">{project.title}</h2>
+              <h2 className="text-2xl font-light text-black">
+                {project.title}
+              </h2>
               <button
                 onClick={() => setShowDetails(false)}
                 className="text-gray-500 hover:text-black transition-colors text-2xl"
@@ -433,42 +606,58 @@ export default function ProjectDetail({ params }) {
                 ×
               </button>
             </div>
-            
+
             <div className="space-y-6">
               {/* Basic Info */}
               <div className="bg-gray-50 rounded-lg p-6">
-                <h3 className="text-lg font-medium mb-4 text-black">Project Details</h3>
+                <h3 className="text-lg font-medium mb-4 text-black">
+                  Project Details
+                </h3>
                 <div className="space-y-3">
                   <div className="flex justify-between py-2 border-b border-gray-200">
                     <span className="text-gray-600">Location</span>
-                    <span className="text-black font-medium">{project.metadata?.location}</span>
+                    <span className="text-black font-medium">
+                      {project.metadata?.location}
+                    </span>
                   </div>
                   <div className="flex justify-between py-2 border-b border-gray-200">
                     <span className="text-gray-600">Year</span>
-                    <span className="text-black font-medium">{project.metadata?.year}</span>
+                    <span className="text-black font-medium">
+                      {project.metadata?.year}
+                    </span>
                   </div>
                   {project.metadata?.area && (
                     <div className="flex justify-between py-2 border-b border-gray-200">
                       <span className="text-gray-600">Area</span>
-                      <span className="text-black font-medium">{project.metadata.area}</span>
+                      <span className="text-black font-medium">
+                        {project.metadata.area}
+                      </span>
                     </div>
                   )}
                   <div className="flex justify-between py-2 border-b border-gray-200">
                     <span className="text-gray-600">Status</span>
-                    <span className="text-black font-medium">{project.metadata?.status}</span>
+                    <span className="text-black font-medium">
+                      {project.metadata?.status}
+                    </span>
                   </div>
                   <div className="flex justify-between py-2 border-b border-gray-200">
                     <span className="text-gray-600">Category</span>
-                    <span className="text-black font-medium">{project.category}</span>
+                    <span className="text-black font-medium">
+                      {project.category}
+                    </span>
                   </div>
                   <div className="flex justify-between py-2 border-b border-gray-200">
                     <span className="text-gray-600">Type</span>
-                    <span className="text-black font-medium">{project.subcategory?.replace('-', ' ')}</span>
+                    <span className="text-black font-medium">
+                      {project.subcategory?.replace("-", " ")}
+                    </span>
                   </div>
                   {project.metadata?.budget && (
                     <div className="flex justify-between py-2">
                       <span className="text-gray-600">Budget</span>
-                      <span className="text-black font-medium">{project.metadata.budget}</span>
+                      <span className="text-black font-medium">
+                        {project.metadata.budget}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -476,9 +665,13 @@ export default function ProjectDetail({ params }) {
 
               {/* Description */}
               <div>
-                <h3 className="text-lg font-medium mb-3 text-black">Description</h3>
+                <h3 className="text-lg font-medium mb-3 text-black">
+                  Description
+                </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  {project.detailedDescription || project.description || 'No description available'}
+                  {project.detailedDescription ||
+                    project.description ||
+                    "No description available"}
                 </p>
               </div>
 
@@ -490,13 +683,17 @@ export default function ProjectDetail({ params }) {
                     {project.metadata.client && (
                       <div className="flex justify-between py-2 border-b border-gray-100">
                         <span className="text-gray-600">Client</span>
-                        <span className="text-black font-medium">{project.metadata.client}</span>
+                        <span className="text-black font-medium">
+                          {project.metadata.client}
+                        </span>
                       </div>
                     )}
                     {project.metadata.contractor && (
                       <div className="flex justify-between py-2 border-b border-gray-100">
                         <span className="text-gray-600">Contractor</span>
-                        <span className="text-black font-medium">{project.metadata.contractor}</span>
+                        <span className="text-black font-medium">
+                          {project.metadata.contractor}
+                        </span>
                       </div>
                     )}
                   </div>
@@ -504,27 +701,39 @@ export default function ProjectDetail({ params }) {
               )}
 
               {/* Features */}
-              {project.features && project.features.filter(f => f.trim()).length > 0 && (
-                <div>
-                  <h3 className="text-lg font-medium mb-4 text-black">Key Features</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {project.features.filter(f => f.trim()).map((feature, i) => (
-                      <div key={i} className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
-                        <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-gray-700 text-sm">{feature}</span>
-                      </div>
-                    ))}
+              {project.features &&
+                project.features.filter((f) => f.trim()).length > 0 && (
+                  <div>
+                    <h3 className="text-lg font-medium mb-4 text-black">
+                      Key Features
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {project.features
+                        .filter((f) => f.trim())
+                        .map((feature, i) => (
+                          <div
+                            key={i}
+                            className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg"
+                          >
+                            <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
+                            <span className="text-gray-700 text-sm">
+                              {feature}
+                            </span>
+                          </div>
+                        ))}
+                    </div>
                   </div>
-                </div>
-              )}
-
-
+                )}
 
               {/* Gallery Info */}
               <div className="pt-4 border-t border-gray-100">
                 <div className="flex justify-between items-center text-sm text-gray-500">
-                  <span>{project.galleryImages?.length || 0} images in gallery</span>
-                  <span>Created {new Date(project.createdAt).toLocaleDateString()}</span>
+                  <span>
+                    {project.galleryImages?.length || 0} images in gallery
+                  </span>
+                  <span>
+                    Created {new Date(project.createdAt).toLocaleDateString()}
+                  </span>
                 </div>
               </div>
             </div>
@@ -537,7 +746,9 @@ export default function ProjectDetail({ params }) {
           <div className="bg-white rounded-lg max-w-md w-full">
             {!isAuthenticated ? (
               <div className="p-6">
-                <h2 className="text-xl font-light mb-4">Admin Access Required</h2>
+                <h2 className="text-xl font-light mb-4">
+                  Admin Access Required
+                </h2>
                 <form onSubmit={handlePasswordSubmit} className="space-y-4">
                   <div className="relative">
                     <input
@@ -608,8 +819,6 @@ export default function ProjectDetail({ params }) {
           </div>
         </div>
       )}
-      
-
     </div>
   );
 }
